@@ -1,0 +1,62 @@
+[
+  {
+    "question": "This is the first test question (yes).",
+    "answers": ["Yes", "No"],
+    "correct": "Yes",
+    "explanation": "Due to explanation 1."
+  },
+  {
+    "question": "This is the second test question (no).",
+    "answers": ["Yes", "No"],
+    "correct": "No",
+    "explanation": "Due to explanation 2."
+  },
+  {
+    "question": "This is the third test question (yes).",
+    "answers": ["Yes", "No"],
+    "correct": "Yes",
+    "explanation": "Due to explanation 3."
+  },
+  {
+    "question": "This is the fourth test question (no).",
+    "answers": ["Yes", "No"],
+    "correct": "No",
+    "explanation": "Due to explanation 4."
+  },
+  {
+    "question": "This is the fifth test question (yes).",
+    "answers": ["Yes", "No"],
+    "correct": "Yes",
+    "explanation": "Due to explanation 5."
+  },
+  {
+    "question": "This is the sixth test question (no).",
+    "answers": ["Yes", "No"],
+    "correct": "No",
+    "explanation": "Due to explanation 6."
+  },
+  {
+    "question": "This is the seventh test question (yes).",
+    "answers": ["Yes", "No"],
+    "correct": "Yes",
+    "explanation": "Due to explanation 7."
+  },
+  {
+    "question": "This is the eighth test question (no).",
+    "answers": ["Yes", "No"],
+    "correct": "No",
+    "explanation": "Due to explanation 8."
+  },
+  {
+    "question": "This is the ninth test question (yes).",
+    "answers": ["Yes", "No"],
+    "correct": "Yes",
+    "explanation": "Due to explanation 9."
+  },
+  {
+    "question": "This is the tenth test question (no).",
+    "answers": ["Yes", "No"],
+    "correct": "No",
+    "explanation": "Due to explanation 10."
+  }
+]
