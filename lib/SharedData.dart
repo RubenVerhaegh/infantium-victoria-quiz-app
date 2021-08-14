@@ -29,7 +29,7 @@ class SharedData {
   }
 
   Future<void> readQuestions() async {
-    print("zo, even lekker wat vraagies lezen hoor");
+    print("Reading questions...");
     _questions = [];
 
     // Question question = new Question("What is the correct answer?", true);

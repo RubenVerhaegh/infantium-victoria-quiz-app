@@ -4,6 +4,7 @@
 
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/SharedData.dart';
 
@@ -32,7 +33,7 @@ class MainLayout extends StatelessWidget {
             decoration: new BoxDecoration(
               image: new DecorationImage(
                   image: new AssetImage("assets/images/Milky-Way-Galaxy.jpg"),
-                  fit: BoxFit.fill
+                  fit: BoxFit.cover
               ),
             ),
           ),
@@ -49,20 +50,6 @@ class MainLayout extends StatelessWidget {
         label: Text("To second page"),
         icon:  Icon(Icons.navigation),
         backgroundColor: Colors.green,
-      ),
-    );
-  }
-}
-
-class SecondRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-      body: Center(
-        child: Text("So far, this has got to be my favorite page.")
       ),
     );
   }
@@ -197,4 +184,121 @@ class UpdateTextState extends State {
       answered = true;
     });
   }
+}
+
+/* ============
+ * SECOND ROUTE
+ * ============ */
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      backgroundColor: Colors.brown,
+      body: StatefulSecondRoute(),
+    );
+  }
+}
+
+class StatefulSecondRoute extends StatefulWidget {
+  //const StatefulSecondRoute({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulSecondRoute> createState() => _StatefulSecondRouteState();
+}
+
+class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
+  List placed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            for (int i = 1; i <= 5; i++)
+              if (!placed.contains(i) && SharedData.instance.nrGoodAnswers >= i)
+                tokenDraggable(i)
+              else
+                Container(
+                  width: 40, height: 40,
+                )
+          ]
+        ),
+        SizedBox(height: 50),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              for (int i = 1; i <= 5; i++) new Stack(
+                children: [
+                  new DragTarget<int>(
+                    builder: (
+                        BuildContext context,
+                        List<dynamic> accepted,
+                        List<dynamic> rejected,
+                        ) {
+                      return tokenTargetContainer();
+                    },
+                    onAccept: (int data) {
+                      print("dragged " + data.toString() + " to " + i.toString());
+                      setState(() {
+                        for (int j = 0; j < placed.length; j++) {
+                          if (placed[j] == data) {
+                            placed[j] = 0;
+                          }
+                        }
+                        placed[i-1] = data;
+                      });
+                      print(placed);
+                    },
+                  ),
+                  if (placed[i-1] > 0) tokenDraggable(placed[i-1]),
+                ],
+              )
+            ]
+        )
+      ]
+    );
+  }
+}
+
+Draggable<int> tokenDraggable(int i) {
+  return new Draggable<int>(
+    data: i,
+    feedback: tokenContainer(i),
+    child: tokenContainer(i),
+    childWhenDragging: new Container(
+      height: 40,
+      width:  40,
+    ),
+  );
+}
+
+Container tokenContainer(int i) {
+  return new Container(
+    height: 40,
+    width:  40,
+    decoration: new BoxDecoration(
+      image: new DecorationImage(
+          image: new AssetImage("assets/images/tokens/example-token-" + i.toString() + ".png"),
+          fit: BoxFit.scaleDown
+      ),
+    ),
+  );
+}
+
+Container tokenTargetContainer() {
+  return new Container(
+    height: 40,
+    width:  40,
+    decoration: new BoxDecoration(
+      image: new DecorationImage(
+          image: new AssetImage("assets/images/tokens/example-token-target.png"),
+          fit: BoxFit.scaleDown
+      ),
+    ),
+  );
 }
