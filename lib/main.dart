@@ -234,33 +234,38 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
             children: <Widget>[
               for (int i = 1; i <= 5; i++) new Stack(
                 children: [
-                  new DragTarget<int>(
-                    builder: (
-                        BuildContext context,
-                        List<dynamic> accepted,
-                        List<dynamic> rejected,
-                        ) {
-                      return tokenTargetContainer();
-                    },
-                    onAccept: (int data) {
-                      print("dragged " + data.toString() + " to " + i.toString());
-                      setState(() {
-                        for (int j = 0; j < placed.length; j++) {
-                          if (placed[j] == data) {
-                            placed[j] = 0;
-                          }
-                        }
-                        placed[i-1] = data;
-                      });
-                      print(placed);
-                    },
-                  ),
+                  tokenDragTarget(i, false),
                   if (placed[i-1] > 0) tokenDraggable(placed[i-1]),
+                  if (placed[i-1] > 0) tokenDragTarget(i, true),
                 ],
               )
             ]
         )
       ]
+    );
+  }
+
+  DragTarget<int> tokenDragTarget(int i, bool invisible) {
+    return new DragTarget<int>(
+      builder: (
+          BuildContext context,
+          List<dynamic> accepted,
+          List<dynamic> rejected,
+          ) {
+        return tokenTargetContainer(invisible);
+      },
+      onAccept: (int data) {
+        print("dragged " + data.toString() + " to " + i.toString());
+        setState(() {
+          for (int j = 0; j < placed.length; j++) {
+            if (placed[j] == data) {
+              placed[j] = 0;
+            }
+          }
+          placed[i-1] = data;
+        });
+        print(placed);
+      },
     );
   }
 }
@@ -290,15 +295,22 @@ Container tokenContainer(int i) {
   );
 }
 
-Container tokenTargetContainer() {
-  return new Container(
-    height: 40,
-    width:  40,
-    decoration: new BoxDecoration(
-      image: new DecorationImage(
-          image: new AssetImage("assets/images/tokens/example-token-target.png"),
-          fit: BoxFit.scaleDown
+Container tokenTargetContainer(bool invisible) {
+  if (invisible) {
+    return new Container(
+      height: 40,
+      width:  40
+    );
+  } else {
+    return new Container(
+      height: 40,
+      width:  40,
+      decoration: new BoxDecoration(
+        image: new DecorationImage(
+            image: new AssetImage("assets/images/tokens/example-token-target.png"),
+            fit: BoxFit.scaleDown
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
