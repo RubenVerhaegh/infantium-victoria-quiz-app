@@ -6,7 +6,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:myapp/SharedData.dart';
+import 'package:material_dialogs/material_dialogs.dart';
 
 import 'Question.dart';
 
@@ -178,6 +180,32 @@ class UpdateTextState extends State {
   void answerQuestion(bool givenAnswer) {
     bool correct = givenAnswer == _currentQuestion.correctAnswer;
     correct ? sd.goodAnswer() : sd.wrongAnswer();
+    bool correct = (givenAnswer == _currentQuestion.correctAnswer);
+    if (correct) {
+      sd.goodAnswer();
+    } else {
+      sd.wrongAnswer();
+      if (sd.nrWrongAnswers == 1) {
+        Dialogs.materialDialog(
+          context: context,
+          title: "Actions have consequences",
+          msg: "As you can see, our decisions impact the world directly. "
+              "Make too many wrong decisions and the earth will be destroyed.",
+          actions: [
+            IconsButton(
+              text: "Continue",
+              iconData: Icons.navigate_next,
+              color: Colors.blue,
+              textStyle: TextStyle(color: Colors.white),
+              iconColor: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ]
+        );
+      }
+    }
 
     setState(() {
       prevCorrect = correct;
