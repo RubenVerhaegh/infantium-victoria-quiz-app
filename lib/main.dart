@@ -44,15 +44,6 @@ class MainLayout extends StatelessWidget {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => SecondRoute()));
-        },
-        label: Text("To second page"),
-        icon:  Icon(Icons.navigation),
-        backgroundColor: Colors.green,
-      ),
     );
   }
 }
@@ -84,88 +75,113 @@ class UpdateTextState extends State {
   @override
   Widget build(BuildContext context) {
     return
-      Column(children: <Widget>[
-        Container(
-          margin: EdgeInsets.fromLTRB(30, 50, 30, 10),
-          height: 180,
-          width: 350,
-          color: Colors.orange,
-          child: Column(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: !answered ? Text(
-                  _currentQuestion.question,
-                  style: TextStyle(fontSize: 20.0)
-              ) : Text(
-                  (prevCorrect ? "That is correct. " : "That is wrong. ") +
-                  _currentQuestion.explanation,
-                  style: TextStyle(fontSize: 20.0)
+      Stack(children: <Widget> [
+        Column(children: <Widget>[
+          Container(
+            margin: EdgeInsets.fromLTRB(30, 50, 30, 10),
+            height: 180,
+            width: 350,
+            color: Colors.orange,
+            child: Column(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: !answered ? Text(
+                    _currentQuestion.question,
+                    style: TextStyle(fontSize: 20.0)
+                ) : Text(
+                    (prevCorrect ? "That is correct. " : "That is wrong. ") +
+                        _currentQuestion.explanation,
+                    style: TextStyle(fontSize: 20.0)
+                ),
+              ),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  !answered ? Container(
+                    margin: EdgeInsets.all(0),
+                    child: TextButton(
+                      child: Text('Yes', style: TextStyle(fontSize: 20.0),),
+                      onPressed: () {
+                        answerQuestion(true);
+                      },
+                    ),
+                  ) : Container(),
+                  !answered ? Container(
+                    margin: EdgeInsets.all(0),
+                    child: TextButton(
+                      child: Text('No', style: TextStyle(fontSize: 20.0),),
+                      onPressed: () {
+                        answerQuestion(false);
+                      },
+                    ),
+                  ) : Container(),
+                  answered ? Container(
+                    margin: EdgeInsets.all(0),
+                    child: TextButton(
+                      child: Text('Next', style: TextStyle(fontSize: 20.0),),
+                      onPressed: () {
+                        nextQuestion();
+                      },
+                    ),
+                  ) : Container(),
+                ],
+              ),
+            ]),
+          ),
+          Stack(children: [
+            new Container(
+              height: 300,
+              width:  300,
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                    image: new AssetImage("assets/images/earth_start.png"),
+                    fit: BoxFit.scaleDown
+                ),
               ),
             ),
-            Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                !answered ? Container(
-                  margin: EdgeInsets.all(0),
-                  child: TextButton(
-                    child: Text('Yes', style: TextStyle(fontSize: 20.0),),
-                    onPressed: () {
-                      answerQuestion(true);
-                    },
-                  ),
-                ) : Container(),
-                !answered ? Container(
-                  margin: EdgeInsets.all(0),
-                  child: TextButton(
-                    child: Text('No', style: TextStyle(fontSize: 20.0),),
-                    onPressed: () {
-                      answerQuestion(false);
-                    },
-                  ),
-                ) : Container(),
-                answered ? Container(
-                  margin: EdgeInsets.all(0),
-                  child: TextButton(
-                    child: Text('Next', style: TextStyle(fontSize: 20.0),),
-                    onPressed: () {
-                      nextQuestion();
-                    },
-                  ),
-                ) : Container(),
-              ],
+            for (var i = 0; i < min(sd.nrWrongAnswers, sd.nrDisasters); i++) new Container(
+              height: 300,
+              width:  300,
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                    image: new AssetImage("assets/images/disaster" +
+                        sd.disasterIndices[i].toString() +
+                        ".png"),
+                    fit: BoxFit.scaleDown
+                ),
+              ),
             ),
           ]),
-        ),
-        Stack(children: [
-          new Container(
-            height: 300,
-            width:  300,
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                  image: new AssetImage("assets/images/earth_start.png"),
-                  fit: BoxFit.scaleDown
-              ),
-            ),
-          ),
-          for (var i = 0; i < min(sd.nrWrongAnswers, sd.nrDisasters); i++) new Container(
-            height: 300,
-            width:  300,
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                  image: new AssetImage("assets/images/disaster" +
-                      sd.disasterIndices[i].toString() +
-                      ".png"),
-                  fit: BoxFit.scaleDown
-              ),
-            ),
-          ),
+          Text(sd.nrGoodAnswers.toString()  + " good answers",
+              style: TextStyle(color: Colors.white)),
+          Text(sd.nrWrongAnswers.toString() + " wrong answers",
+              style: TextStyle(color: Colors.white))
         ]),
-        Text(sd.nrGoodAnswers.toString()  + " good answers",
-        style: TextStyle(color: Colors.white)),
-        Text(sd.nrWrongAnswers.toString() + " wrong answers",
-            style: TextStyle(color: Colors.white))
+        Positioned(
+          bottom: 20,
+          right: 20,
+          child: Stack(children: <Widget>[
+            MaterialButton(
+              child:  Icon(
+                Icons.checkroom,
+                color: Colors.white,
+              ),
+              height: 56,
+              minWidth: 56,
+              shape: CircleBorder(),
+              color: Colors.green,
+              elevation: 2.0,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SecondRoute()));
+                },
+
+            ),
+            if (sd.nrGoodAnswers > 0) notificationDot(sd.nrGoodAnswers),
+          ]),
+        ),
       ]);
   }
 
@@ -178,8 +194,6 @@ class UpdateTextState extends State {
   }
 
   void answerQuestion(bool givenAnswer) {
-    bool correct = givenAnswer == _currentQuestion.correctAnswer;
-    correct ? sd.goodAnswer() : sd.wrongAnswer();
     bool correct = (givenAnswer == _currentQuestion.correctAnswer);
     if (correct) {
       sd.goodAnswer();
@@ -211,6 +225,24 @@ class UpdateTextState extends State {
       prevCorrect = correct;
       answered = true;
     });
+  }
+
+  Container notificationDot(int count) {
+    return Container(
+      width: 20,
+      height: 20,
+      decoration: new BoxDecoration(
+        color: Colors.red,
+        shape: BoxShape.circle,
+      ),
+      child: Center(child: Text(
+        count.toString(),
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      )),
+    );
   }
 }
 
