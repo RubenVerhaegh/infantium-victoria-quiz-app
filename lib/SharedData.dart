@@ -104,7 +104,7 @@ class SharedData {
       for (int i = 0; i < questionsList.length; i ++) {
         var q = questionsList[i];
         String question = q["question"];
-        bool   correct  = q["correct"] == "Yes" ? true : false;
+        bool   correct  = q["answer"] == "true" ? true : false;
         String explanation = q["explanation"];
         _questions.add(new Question(question, correct, explanation));
       }

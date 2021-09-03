@@ -1,62 +1,477 @@
 [
   {
-    "question": "This is the first test question (yes).",
-    "answers": ["Yes", "No"],
-    "correct": "Yes",
-    "explanation": "Due to explanation 1."
+    "question": "Donating is the easiest way to upgrade your no longer loved clothes.",
+    "answer": "false",
+    "explanation": "Donated items very often end up in the landfill or are down-cycled. Up-cycling requires time and skills. Selling your pre-loved garments is the easiest and safest way to upgrade them."
   },
   {
-    "question": "This is the second test question (no).",
-    "answers": ["Yes", "No"],
-    "correct": "No",
-    "explanation": "Due to explanation 2."
+    "question": "Silk is a cruelty free material.",
+    "answer": "false",
+    "explanation": "Silk is not a cruelty free material. To make one scarf, over 300 silkworm are cooked alive.  'Peace silk' is an alternative way of raising silkworms, allowing the silkworms to emerge from their cocoon and complete their 'natural' life cycle before harvesting their cocoon."
   },
   {
-    "question": "This is the third test question (yes).",
-    "answers": ["Yes", "No"],
-    "correct": "Yes",
-    "explanation": "Due to explanation 3."
+    "question": "Billie Eilish is a vegan celebrity.",
+    "answer": "true",
+    "explanation": "Billy Eilish has been an outspoken advocate for animal rights and plant-based living."
   },
   {
-    "question": "This is the fourth test question (no).",
-    "answers": ["Yes", "No"],
-    "correct": "No",
-    "explanation": "Due to explanation 4."
+    "question": "Gucci went fur-free in 2019.",
+    "answer": "true",
+    "explanation": "Gucci joined a growing group of luxury fashion houses that are fur-free like Mikael Kors, Armani, Tommy Hilfiger and others. However, the fur-free statement often does not include leather or exotic leather."
   },
   {
-    "question": "This is the fifth test question (yes).",
-    "answers": ["Yes", "No"],
-    "correct": "Yes",
-    "explanation": "Due to explanation 5."
+    "question": "Finishing, dyeing and tanning are the most environmentally unfriendly parts of leather production.",
+    "answer": "false",
+    "explanation": "The raising of the live stock is the most environmentally unfriendly. The amount of methane produced by raising cows and other bovines is overwhelming. But tanning is a close runner up !"
   },
   {
-    "question": "This is the sixth test question (no).",
-    "answers": ["Yes", "No"],
-    "correct": "No",
-    "explanation": "Due to explanation 6."
+    "question": "About 110 million meters of textile is made each year. 1 million of that becomes cutting waste, or about 1% of the total volume.",
+    "answer": "false",
+    "explanation": "About 12,5 – 15 percent of all textile never becomes a garment but ends as cutting floor waste, also called pre-consumer waste. *(According to textile exchange 2020)"
   },
   {
-    "question": "This is the seventh test question (yes).",
-    "answers": ["Yes", "No"],
-    "correct": "Yes",
-    "explanation": "Due to explanation 7."
+    "question": "Goatskin is the most used source for leather in fashion.",
+    "answer": "false",
+    "explanation": "Cow is the leather of choice for both bags and shoes. Angora goats are very popular for their hair, and goat leather is used, just not in the same volume as cow."
   },
   {
-    "question": "This is the eighth test question (no).",
-    "answers": ["Yes", "No"],
-    "correct": "No",
-    "explanation": "Due to explanation 8."
+    "question": "California has been a pioneer by banning fur.",
+    "answer": "true",
+    "explanation": "California was the first USA state to forbid the sales and production of new fur in January 2020."
   },
   {
-    "question": "This is the ninth test question (yes).",
-    "answers": ["Yes", "No"],
-    "correct": "Yes",
-    "explanation": "Due to explanation 9."
+    "question": "Of every harvested kg of cotton, only 35% becomes textile.",
+    "answer": "true",
+    "explanation": "35% of cotton grown goes into textile, the rest is used for things like cotton seed oil, rubber, coffee filters and food for cattle."
   },
   {
-    "question": "This is the tenth test question (no).",
-    "answers": ["Yes", "No"],
-    "correct": "No",
-    "explanation": "Due to explanation 10."
+    "question": "Nylon tights decompose in 2-5 years in landfill.",
+    "answer": "false",
+    "explanation": "Nylon tights will survive about 30 – 40 years before decomposition. And when they finally decompose, they pollute groundwater with chemicals."
+  },
+  {
+    "question": "It takes about 2 weeks for a linen top to decompose in a landfill.",
+    "answer": "true",
+    "explanation": "Linen is one of the fastest decomposing natural textiles. Decomposition speed depends on the climate, water and humidity in the landfill."
+  },
+  {
+    "question": "Around 1950, buying clothing consumed on average 33% of a household budget. Today buying clothing takes up 25 % of a household budget.",
+    "answer": "false",
+    "explanation": "It is true that in 1950 13 of the household budget was spent on textile. However, today only 5% of a household budget goes to textile, but not because we buy less, but because the prices and value dropped dramatically."
+  },
+  {
+    "question": "Leicester is one of the biggest fast fashion producing cities in the UK. The average salary for a seamstress is 11£ an hour.",
+    "answer": "false",
+    "explanation": "Leicester is a hot spot for fast fashion production, but, the average salary is 3£ an hour which is under the UK’s minimum wage of 7£h. The salary is paid cash and an employer can sometimes require an unpaid trial period of two weeks."
+  },
+  {
+    "question": "Zara launches 6500 new products every year.",
+    "answer": "false",
+    "explanation": "Zara releases 65 000 new products every year, this translates to about 200 new products per day."
+  },
+  {
+    "question": "In North America, 10.5 million tons of clothing is sent to landfill every year. That’s about 30 times as heavy as the Empire State Building.",
+    "answer": "true",
+    "explanation": "And since over 60% is polyester or a polyester blend, it will remain there for years, not decomposing, just leaking toxins. (source Value village, The State of Reuse report 2017)"
+  },
+  {
+    "question": "Globally only 20% of textiles are recycled, meaning the other 80% are lost to landfill or incineration.",
+    "answer": "true",
+    "explanation": "This is true. Moreover, the recycling happens in the form of down cycling, the textile becomes furniture stuffing, rags or insulation."
+  },
+  {
+    "question": "Less than 1% of collected garments is truly recycled into fresh textiles.",
+    "answer": "true",
+    "explanation": "Very sad and very true, only 20% of all textile we throw away is recycled, and only 1% of what is recycled is truly recycled, meaning that it becomes a garment again."
+  },
+  {
+    "question": "Of the 2,400 substances used in clothing manufacturing, researchers found that approximately 30% of the identified substances posed a risk to human health.",
+    "answer": "true",
+    "explanation": "Especially the wet processing uses many chemicals that are intended on changing or optimizing the fabric, many of those are toxic or suspected of being toxic."
+  },
+  {
+    "question": "In the UK, 26% of consumers reported that the last item of clothing they threw away, was discarded because the consumer didn’t like it anymore.",
+    "answer": "true",
+    "explanation": "Those garments are thrown away not because they are broken or don’t fit anymore. They are discarded because they are not liked anymore, considered out of fashion or simply served their purpose to be in a social media post."
+  },
+  {
+    "question": "When making a jeans, most water is polluted growing the plants.",
+    "answer": "false",
+    "explanation": "When growing cotton or other plant-based materials with the use of pesticides, this will pollute the groundwater. However, the dying and finishing of the jeans pollute many more liters."
+  },
+  {
+    "question": "It is estimated that we purchase 400% more textile today then we did 30 years ago.",
+    "answer": "true",
+    "explanation": "More people have joined the consumer population, and each individual consumes more each year, and uses its goods less often before throwing them away."
+  },
+  {
+    "question": "In the past decade fast fashion brands have decreased their traditional advertising budget in favor of collaborating with influencers to create a more relatable content and increase their revenues.",
+    "answer": "true",
+    "explanation": "Many studies have found that creating a sense of scarcity joined with influencers showcasing their picture perfect life with a product is a super effective way to market stuff."
+  },
+  {
+    "question": "Regarding the textile industry, men are smaller consumers than women.",
+    "answer": "false",
+    "explanation": "Influenced by social medias, men consume as many garments as women nowadays."
+  },
+  {
+    "question": "In the eyes of the Belgian law, in a case of plagiarism, 15 differences need to be found in two similar garments in order for both garments to be considered different.",
+    "answer": "false",
+    "explanation": "Designs are actually so badly protected, if a brand can show how their model is different on 7 different points, it is no longer considered a copy."
+  },
+  {
+    "question": "In most metropolitan cities around the globe, deliveries represents 10% of Co2 emissions from all transports. In these 10%, a third are clothing purchases.",
+    "answer": "true",
+    "explanation": "And the delivery emissions are only growing, with consumers wanting same day deliveries, making many seperate deliver-at-home orders, each time for one item. And consumers ordering a variety with the intention of only keeping one, and returning all the others, for free."
+  },
+  {
+    "question": "The textile industry is the 2nd most polluting industry in the world.",
+    "answer": "false",
+    "explanation": "This is a strange number, that has an obscure origin. First off, the statement is empty without definition of what is an industry, 2nd the textile industry is vast, but which aspects are included in this statement The food, transport, electronics industries are all also very polluting, each industry just has different focus points."
+  },
+  {
+    "question": "For 1 ton of produced garments, 200 tons of water gets polluted.",
+    "answer": "true",
+    "explanation": "On average this is accurate, to create the raw materials (wood, plants, oil) water is used, and in each following steps a lot of water is used to treat the fibers."
+  },
+  {
+    "question": "Viscose is made out of wood which makes it a eco-friendly material.  ",
+    "answer": "false",
+    "explanation": "Viscose is made out of wood, but the process to turn wood into fiber is anything but eco friendly. It requires a number of chemicals, including carbon disulphide (Cs2) and formaldehyde which is highly toxic."
+  },
+  {
+    "question": "Lyocell is the newer generation of viscose.",
+    "answer": "true",
+    "explanation": "Lyocell is like viscose made from wood, but contrary to viscose a much more environmentally friendly process."
+  },
+  {
+    "question": "Every year, 25% of produced chemicals are used in the textile industry.",
+    "answer": "true",
+    "explanation": "This seems an absurd high number, but cotton consumes vast amounts of chemicals in the cultivation and processing. Sheep are treated with heavy chemicals to avoid insects like flystrike, wet processing uses tons of chemicals to create all different touches and feels we enjoy. Making viscose, bamboo, polyester, nylon requires a fully chemical process, not to mention the chemicals needed to convert animal hides into leather."
+  },
+  {
+    "question": "Around 700 tons of tights are produced and sold globally every year.",
+    "answer": "false",
+    "explanation": "Actually 7000 tons of tights are produced and become synthetic waste every year."
+  },
+  {
+    "question": " 1.4 quadrillion microfibers are estimated to be in the ocean as a result of laundering clothes.",
+    "answer": "true",
+    "explanation": "Every fiber releases microfibers when washed. But plant micro fibers are “natural” (depending on their treatments) and do not pose a big risk to the environment. Polyesters, which represent 60% of used fibers shed micro plastics, mostly ending in the oceans."
+  },
+  {
+    "question": "18% of all cotton grown worldwide is organic.",
+    "answer": "false",
+    "explanation": "30% or all cotton grown in 2020 is from a more sustainable source. That includes organic cotton, Fairtrade cotton, Cotton made in Africa and Better cotton initiative. But only around 1% of all cotton grown in 2020 was organic. That number is rising, but BCI cotton numbers are rising way faster."
+  },
+  {
+    "question": "In Bangladesh, the average salary for a seamstress in textile factories is between 1,2€ and 1,8€ per hour.",
+    "answer": "true",
+    "explanation": "Even after heavy worker protests and living wage indicators clearly showing how this salary does not allow for decent living this remains a common salary."
+  },
+  {
+    "question": "Estimate says that there are 168 thousand child laborers around the globe, part of them being in the textile industry.",
+    "answer": "false",
+    "explanation": "Estimated is that 168 million children are in some form of child labor around the world."
+  },
+  {
+    "question": "A zero hour contract provides to textile workers a minimum wage salary and compensations during times when there is not enough work in the factories.",
+    "answer": "false",
+    "explanation": "Zero hour contracts are contracts in which employers are not obliged to provide a set number of working hours each week and consequently do not have to provide social protection. Zero-hour contracts are very common in the textile industry."
+  },
+  {
+    "question": "It takes a garment worker in the global south 1 month to earn what a fast fashion brand CEO makes on their lunch break.",
+    "answer": "false",
+    "explanation": "It actually takes a garment worker 18 months of work, 6 days a week, anywhere between 8 – 15 hours a day to just make the amount a fast fashion brand's CEO makes during their one hour lunch break."
+  },
+  {
+    "question": "In the past years, some fast fashion brands have produces their garment in North Korea and therefore have contributed to the dictatorship.",
+    "answer": "true",
+    "explanation": "Undercover research has shown that garments labelled “made in China” can be sewn via sub-contractors in North Korea."
+  },
+  {
+    "question": "It is possible that a garment labeled « Made in China » was actually produced in North Korea.",
+    "answer": "true",
+    "explanation": "China is one of a few allies to the North Korean regime and holds strong textile sub-contracting ties with the country."
+  },
+  {
+    "question": "The Rana Plaza which was the home of textile factories collapsed in 2013 due to an earthquake.",
+    "answer": "false",
+    "explanation": "The Rana Plaza was build to be an apartment complex, not textile factories. The building collapsed due to the machine vibrations, killing about 1200 workers."
+  },
+  {
+    "question": "The Rana Plaza Factory collapse cost the lives of 120 workers in 2013 and was the biggest factory collapse in recent history.",
+    "answer": "false",
+    "explanation": "The Rana Plaza Factory was in Bangladesh, when it collapsed in 2013, over 1100 garment workers lost their lives. It is the biggest textile factory collapse in recent history, but many more textile workers have lost their lives since in building collapses, fires and other hazards."
+  },
+  {
+    "question": "Pre-consumer waste and post-consumer waste can be treated in the same way to recycle.",
+    "answer": "false",
+    "explanation": "Pre-consumer waste is never used, has little or no hot fusion, buttons, zippers, seams and usually comes in bigger volumes. Making it much easier to recycle. Post-consumer waste are garments so worn, torn etc that they can not be reused. Both have very different recycling processes."
+  },
+  {
+    "question": "Pre-consumer waste can be considered a design flaw.",
+    "answer": "true",
+    "explanation": "Before mass production, textile was so valuable, that cutting waste did not exist. All little cut off where used, as decoration, embroidery etc. and garments where designed to have as little cutting waste as possible."
+  },
+  {
+    "question": "One way of reducing cutting waste is keeping bigger seam allowances on the inside.",
+    "answer": "true",
+    "explanation": "This allows for modification to the garment (making it wider, longer, etc.) and if we don't hold on to a strict one cm seam allowance rule, it becomes possible to really reduce cutting waste."
+  },
+  {
+    "question": "The price of a t-shirt will only increase about 5% or 1.00€ on a t-shirt of 20€ when all workers are payed a living wage.",
+    "answer": "true",
+    "explanation": "Raising wages to a living wage will not increase the cost of any garment dramatically, but it is a life changer for those making the clothing."
+  },
+  {
+    "question": "The price of clothes will be a lot more expensive if brands would pay their workers a living wage instead of a minimum wage.",
+    "answer": "false",
+    "explanation": "Paying workers a living wage would only increase the retail price by about 5% that is 50 cents extra for a $10 T shirt"
+  },
+  {
+    "question": "The average person buys 60% more items of clothing and keeps them as long as they did 15 years ago.",
+    "answer": "false",
+    "explanation": "The average person does buy 60% more than they did 15 years ago, but only keeps the items HALF as long as 15years ago."
+  },
+  {
+    "question": "Fewer than 1 % of garments are recycled into new clothing each year, and only 20 % of textiles are recycled at all.",
+    "answer": "true",
+    "explanation": "Recycling without down-cycling is a complex process. Most textile that is recycled will be reused as something else then garments. (it is easier to make rags, paper, coffee filters, car filling then new garments.) most textile that is recycled in new textile is either converted in a polyester or bio based synthetic, or blended with virgin new material.  Every tonne of discarded textiles that is reused stops 20 tonnes of CO2 from entering the atmosphere. "
+  },
+  {
+    "question": "The fast fashion industry created 52 micro seasons per year.",
+    "answer": "true",
+    "explanation": "The fashion industry is designed to make you feel out of trend after one week. Once upon a time, there were two fashion seasons SpringSummer and FallWinter. Fast forward to today and the fashion industry is turning out 52 micro-seasons per year."
+  },
+  {
+    "question": "Around 50 million children are estimated to still be in child labour.",
+    "answer": "false",
+    "explanation": "Worldwide, it’s estimated that 168 million children are engaged in forms of child labour. Any child working under the age of 15 is considered to be partaking in child labour. 48% of victims of child labour are just 5-11 years old"
+  },
+  {
+    "question": "Most clothes are only discarded when they are worn out.",
+    "answer": "false",
+    "explanation": "Most clothes are discarded because they are out of fashion, have been worn to an event, on a social media image, or because the owner does not like them anymore, or because of some minor issue like a button that needs to be re-attached."
+  },
+  {
+    "question": "Decisions made during the design phase are responsible for 80 to 90% of the environmental and economic costs.",
+    "answer": "false",
+    "explanation": "Each production step has an environmental impact due to water, material, chemical and energy use. But almost all production decisions are implicitly decided in the design."
+  },
+  {
+    "question": " Increasing garment lifetimes is one of the most effective means of reducing their environmental footprint.",
+    "answer": "true",
+    "explanation": "If the number of times a garment is worn were doubled, the greenhouse gas emissions over it's lifetime would be immediately 44% lower"
+  },
+  {
+    "question": "The 'made in' label indicates where an item is produced.",
+    "answer": "false",
+    "explanation": " Most garments travel to multiple countries between fibre and final garment. Garments can travel anything up to 40.000 km from farm to shop. That is as much as all around the planet."
+  },
+  {
+    "question": "Use of synthetic fabrics releases thousands of kilograms of micro fibres into fresh and oceanic waterways every day.",
+    "answer": "true",
+    "explanation": "Micro plastic sheds from synthetic clothes when used, but mostly when washed. They are to small to be filtered out of the water, and will end up on the ocean, where any ocean life will ingest them."
+  },
+  {
+    "question": "It's better for the earth to sell your clothes than to donate them.",
+    "answer": "true",
+    "explanation": "Resold clothes go to people who value them, they pay for them. Donated clothes mostly end up in very poor countries, where they destroy the local textile economy. Roughly 5 percent of donated clothes are directly sent to landfills, largely due to mildew issues, which can contaminate entire bales of clothing."
+  },
+  {
+    "question": "The fashion industry is a very polluting industry.",
+    "answer": "true",
+    "explanation": "Almost all clothing is made from either GMO or non organic intensively farmed plants, trees that are transformed in fiber via an intense chemical process or fossil fuels. Many chemicals used are known to irreversibly damages our ecosystem."
+  },
+  {
+    "question": "Natural fabrics as linen and cotton are always organic.",
+    "answer": "false",
+    "explanation": "Chemicals are invisible to human eye and still not listed on the label. Only certified organic garments are free of hazardous chemicals. If they label says organic material, but not organic garment, it might be treated with toxins in the making process.  Keep your guard up when the clothes in your hand promise to be wrinkle-free or stain-resistant as the only way would be to ‘’plastify’’ it. These treatments are done with toxic chemicals such as formaldehyde and PFOA, which are toxic for the environment and for your health."
+  },
+  {
+    "question": "The United Nations have released 17 international Sustainable Development Goals (SDGs).",
+    "answer": "true",
+    "explanation": "The 17 SDGs are (1) No Poverty, (2) Zero Hunger, (3) Good Health and Well-being, (4) Quality Education, (5) Gender Equality, (6) Clean Water and Sanitation, (7) Affordable and Clean Energy, (8) Decent Work and Economic Growth, (9) Industry, Innovation and Infrastructure, (10) Reducing Inequality, (11) Sustainable Cities and Communities, (12) Responsible Consumption and Production, (13) Climate Action, (14) Life Below Water, (15) Life On Land, (16) Peace, Justice, and Strong Institutions, (17) Partnerships for the Goals."
+  },
+  {
+    "question": "Washing and drying 1 kilogram of clothing over its entire life cycle creates 11 kilograms of greenhouse gases.",
+    "answer": "true",
+    "explanation": "To reduce the greenhouse gases released during the “use phase” consider washing at lower temperatures or cold, wash only when really necessary, search for non toxic washing powder or paper strips, with as little packaging or no packaging. And line dry outside. So the excess water evaporates in the air, instead of going down the sewage system."
+  },
+  {
+    "question": "There’s very little action we can take as consumers to change the fashion industry.",
+    "answer": "false",
+    "explanation": "Each purchase is a vote for how you want the world to be. Demand openness and information from the brands you buy from. Join consumer organizations like Clean Clothes Campaign and Fashion Revolution.  Buy from brands that strive to be ethical and ecological, and who pay a living wage to all their workers."
+  },
+  {
+    "question": "Some estimates suggest consumers treat the lowest-priced garments as nearly disposable, discarding them after just seven or eight wears",
+    "answer": "true",
+    "explanation": "If consumers would know how much blood sweat and tears it takes to make a single garment, they will appreciate it more, take better care of it and wear it longer."
+  },
+  {
+    "question": "Organic cotton is genetically engineered to not need pest-control.",
+    "answer": "false",
+    "explanation": "Organic farming uses natural pest control. One bug that likes the other, growing several plants together where one plant is hated by the bugs that love to other plant. Etc."
+  },
+  {
+    "question": "It takes more water to grow conventional cotton as opposed to organic cotton.",
+    "answer": "false",
+    "explanation": "It takes roughly 2700 liters of water to create 1 kg of cotton. (this depends highly on the region under scrutiny) Organic cotton uses the same, but 80% of its water is coming from rainfall, not irrigation. On top of this, organic farming creates soil that holds more carbon, making it easier for the soil to hold on to rainwater and they dont use chemicals that would end up in the groundwater."
+  },
+  {
+    "question": "The lifespan of polyester is between 20 to 200 years",
+    "answer": "true",
+    "explanation": "Polyesters are not biodegradable meaning that the polyester fabric shirt you bought last season will not decompose for 20 years at best and 200 years at worst, depending on conditions. Every time you buy something polyester, imagine it will still be around when your great great grand children are living here. Would they want the shirt you are about to buy"
+  },
+  {
+    "question": "The percentage of recycled material we can use today to make a new material of acceptable quality is 50% recycled and 50% virgin material.",
+    "answer": "false",
+    "explanation": "Recent technologies allow us to mix up to 35% post consumer recycled fibers to keep the material durable enough. All the rest is virgin material."
+  },
+  {
+    "question": "On Average, we wear our clothes 7 to 10 wears before discarding them.",
+    "answer": "true",
+    "explanation": "Several studies reported, that on average a consumer wears a garment only 7 to 10 times. While third of consumers refers to an item as old only after 3 wears."
+  },
+  {
+    "question": "Anywhere between 20 to 75 million people work worldwide in the textile industry.",
+    "answer": "true",
+    "explanation": "It is estimated anywhere between 20 million and 75 million people are employed in the textile industry worldwide. Employment in the garment industry is particularly important in developing economies such as India, Pakistan, and Vietnam. Textile is very wide, including army tents, hospital attire, linens and bedding, car interiors etc."
+  },
+  {
+    "question": "It takes less water to grow conventional cotton as opposed to organic cotton.",
+    "answer": "false",
+    "explanation": "It takes roughly 2700 liters of water to create 1 kg of cotton. (this depends highly on the region under scrutiny) Organic cotton uses the same, but 80% of its water is coming from rainfall, not irrigation. On top of this, organic farming creates soil that holds more carbon, making it easier for the soil to hold on to rainwater and they dont use chemicals that would end up in the groundwater."
+  },
+  {
+    "question": "5% of all pesticides used in the world are used in growing conventional cotton.",
+    "answer": "false",
+    "explanation": "11% of all pesticides used in the world are used in cotton farming. In other words, a staggering 25% of all pesticides used for a non-food crop go to the cultivation of cotton"
+  },
+  {
+    "question": "Nathalie Portman's dress in the Miss DIOR campaign in 2017 is the least vegan dress in recent fashion history.",
+    "answer": "false",
+    "explanation": "Nathalie Portman actually is vegan and requested all accessories and garments she wore during the campaign to be vegan."
+  },
+  {
+    "question": "GOTS stands for Green Organic Textiles Supervision.",
+    "answer": "false",
+    "explanation": "GOTS stands for Global Organic Textile Standard and checks chemicals used in bleaching and dying, waste and water management and the social situation in the textile industry."
+  },
+  {
+    "question": "GOTS stands for Global Organic Textile Standard",
+    "answer": "true",
+    "explanation": "GOTS is a textile production certification that limits the use of toxic bleaches, dyes and other chemical inputs during the production process of textiles. And it states that all material was grown according to organic farming principles."
+  },
+  {
+    "question": "Is a bioplastic biodegradable",
+    "answer": "true",
+    "explanation": "All materials biodegrade eventually, some after hours, days, some only after 500 years. Biodegradable means it will decompose, it does not mean it's remains will not pollute or that it is environmentally safe."
+  },
+  {
+    "question": "Fashion Revolution started because a designer no longer wanted to design black clothes.",
+    "answer": "false",
+    "explanation": "Fashion Revolution is a grass root organization, started in the aftermath of the Rana Plaza Factory disaster in 2013. It demands transparency and ethical behavior from brands and factories."
+  },
+  {
+    "question": "All bioplastic is compostable",
+    "answer": "false",
+    "explanation": "Compostability is much desired but not common. It means the material would decompose in less than 180 days, under certain circumstances. It still does not mean you can just throw it away and it will decompose. Look for a compostable label like TUVCompostable."
+  },
+  {
+    "question": "True Cost is a movie about fast fashion.",
+    "answer": "true",
+    "explanation": "True cost is a must see movie about why t-shirts can never cost 5€. if you buy a t-shirt for 5€, you are not paying its full price, someone else is."
+  },
+  {
+    "question": "Rana Plaza Factory was in Vietnam.",
+    "answer": "false",
+    "explanation": "The Rana Plaza Factory was in Bangladesh, when it collapsed in 2013, over 1100 garment workers lost their lives."
+  },
+  {
+    "question": "The best way to recycle plant based clothing is to compost them.",
+    "answer": "true",
+    "explanation": "It is the best way to recycle plant based garments, because it keeps valuable nutrients in our ecosystem, and it becomes compost for other plants to grow. BUT, because so many chemicals are used in the growing and processing of fabric, almost no clothing can be composted, it would leak hazardous chemicals into the soil."
+  },
+  {
+    "question": "Monomaterials are uni colored materials",
+    "answer": "false",
+    "explanation": "Monomaterials are made of only one ingredient, only cotton, only polyester etc. this way it is much easier to recycle the garment after use, since each fiber needs a different type of recycling."
+  },
+  {
+    "question": "It is best to buy garments that are made of monomaterials because they are much easier to recycle after use.",
+    "answer": "true",
+    "explanation": "Monomaterials are made of only one ingredient, only cotton, only polyester etc. this way it is much easier to recycle the garment after use, since each fiber needs a different type of recycling."
+  },
+  {
+    "question": "Cradle to cradle means every product is designed so it can either be fully recycled, or become a nutrient for a new product, once its current life is over.",
+    "answer": "true",
+    "explanation": "Cradle to cradle, means products are born, are used and then not brought to a grave site (like an incinerator) but reborn into a new product."
+  },
+  {
+    "question": "Hybrid products are a nightmare to recycle.",
+    "answer": "true",
+    "explanation": "Cradle to cradle describes hybrids as those products that have intertwined materials that need to be recycled with materials that need to be composted."
+  },
+  {
+    "question": "Hybrid products are the ideal outcome of any cradle to cradle design",
+    "answer": "false",
+    "explanation": "Hybrids are regarded as the worst products in a Cradle to cradle view. Natural and technical materials are intertwined making it impossible to separate after use. Meaning all nutrients are lost for ever and can not be reborn into a new product or cycle."
+  },
+  {
+    "question": "Good design thinks about the assembly and disassembly of the product.",
+    "answer": "true",
+    "explanation": "By designing the disassembly of a product into the product, the recycling process is inherently designed into the product."
+  },
+  {
+    "question": "Made to measure fashion is a thing of the past, it has not role in a sustainable future.",
+    "answer": "false",
+    "explanation": "Made to measure is one great way to answer to the problem of overproduction."
+  },
+  {
+    "question": "Renting clothing is a great sustainable thing consumers can do.",
+    "answer": "false",
+    "explanation": "Renting actually causes so much shipping and industrial chemical washing, it has a higher environmental footprint than recycling a garment and making something new, or buying something second hand."
+  },
+  {
+    "question": "Zero waste pattern cutting is a new way of making no waste when making clothing.",
+    "answer": "false",
+    "explanation": "All garments where zero waste in the distant past. Fabric was so labour intensive, and expensive, that no tread went to waste. Cutting waste is something we only know since the industrial revolution. Making zero waste patterns is a great way to reduce pre-consumer waste."
+  },
+  {
+    "question": "Zero waste pattern cutting demands a very intense collaboration between the pattern maker and the designer.",
+    "answer": "true",
+    "explanation": "Zero waste patterns decide a big part of the aesthetic of the final garment. Waste can be used to decorate or embellish the garment, or the shape of the garment is influenced to eliminate all waste."
+  },
+  {
+    "question": "3D printing clothes can eliminate all pre-consumer waste",
+    "answer": "true",
+    "explanation": "Like knitting, 3D printing would only print what is needed, eliminating all waste, potentially making any design."
+  },
+  {
+    "question": "Repairing your clothes is an environmental protection act.",
+    "answer": "true",
+    "explanation": "By repairing your clothes, their life is prolonged, saving precious resources by not needing to buy something new."
+  },
+  {
+    "question": "Line drying and machine drying has the same environmental impact.",
+    "answer": "false",
+    "explanation": "Line drying needs to energy, and it actually has a positive impact because it evaporates the excess water into the air instead of into the sewage system."
+  },
+  {
+    "question": "Buying organic clothing saves bees.",
+    "answer": "true",
+    "explanation": "Organic farming uses natural pest control. One bug that likes the other, growing several plants together where one plant is hated by the bugs that love to other plant. Etc. and it does not massively kill the bees."
+  },
+  {
+    "question": "Regenerative agriculture is the less environmentally friendly brother of organic farming.",
+    "answer": "false",
+    "explanation": "Regenerative farming uses the ideas of organic farming, but aims further to not only keep the status quo, but to activly improve the quality if the soil, and the lives of the people living around and of the soil."
+  },
+  {
+    "question": "1% or all cotton is organic cotton.",
+    "answer": "true",
+    "explanation": "1% is grown organically, a total of about 31% tries one way or another to improve its impact, but a staggering 69% is unhindered polluting waterways, soil and using volumes of chemicals."
   }
 ]
