@@ -102,7 +102,7 @@ class UpdateTextState extends State {
                   !answered ? Container(
                     margin: EdgeInsets.all(0),
                     child: TextButton(
-                      child: Text('Yes', style: TextStyle(fontSize: 20.0),),
+                      child: Text('True', style: TextStyle(fontSize: 20.0),),
                       onPressed: () {
                         answerQuestion(true);
                       },
@@ -111,7 +111,7 @@ class UpdateTextState extends State {
                   !answered ? Container(
                     margin: EdgeInsets.all(0),
                     child: TextButton(
-                      child: Text('No', style: TextStyle(fontSize: 20.0),),
+                      child: Text('False', style: TextStyle(fontSize: 20.0),),
                       onPressed: () {
                         answerQuestion(false);
                       },

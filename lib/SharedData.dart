@@ -10,6 +10,7 @@ class SharedData {
   int _nrGoodAnswers  = 0;
   int _nrWrongAnswers = 0;
   int _nrDisasters = 10;
+  int _nrQuestionsAsked = 0;
   List<int> _disasterIndices;
 
   factory SharedData() {
@@ -21,11 +22,22 @@ class SharedData {
   Future<Question> randomQuestion() async {
     if (_questions == null) {
       await readQuestions();
-      randomizeDisasterOrder();
+      _questions.shuffle(new Random());
     }
 
-    var random = new Random();
-    return _questions[random.nextInt(_questions.length)];
+    if (_nrQuestionsAsked == _questions.length) {
+      resetQuestions();
+    }
+
+    return _questions[_nrQuestionsAsked++].ask();
+  }
+
+  void resetQuestions() {
+    _nrQuestionsAsked = 0;
+    _questions.forEach((question) {
+      question.reset();
+    });
+    _questions.shuffle(new Random());
   }
 
   Future<void> readQuestions() async {
@@ -36,7 +48,6 @@ class SharedData {
     // _questions.add(question);
 
     try {
-      final String string = await rootBundle.loadString("lib/questions.json");
       final String string = await rootBundle.loadString("lib/testquestions.json");
       // String content = '['
       //     '{'
@@ -143,4 +154,5 @@ class SharedData {
   get nrGoodAnswers => _nrGoodAnswers;
   get nrDisasters => _nrDisasters;
   get disasterIndices => _disasterIndices;
+  get nrUnaskedQuestions => _nrQuestionsAsked;
 }
