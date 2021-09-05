@@ -37,6 +37,7 @@ class SharedData {
 
     try {
       final String string = await rootBundle.loadString("lib/questions.json");
+      final String string = await rootBundle.loadString("lib/testquestions.json");
       // String content = '['
       //     '{'
       //       '"question": "This is the first test question (yes).",'

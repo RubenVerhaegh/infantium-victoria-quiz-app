@@ -43,6 +43,7 @@ flutter:
     - assets/images/
     - assets/images/tokens/
     - lib/questions.json
+    - lib/testquestions.json
 #flutter:
 #  # The following line ensures that the Material Icons font is
 #  # included with your application, so that you can use the icons in

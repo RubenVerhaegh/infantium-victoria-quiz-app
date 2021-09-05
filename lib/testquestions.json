@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Q1 (true)",
+    "answer": "true",
+    "explanation": "A1"
+  },
+  {
+    "question": "Q2 (true)",
+    "answer": "true",
+    "explanation": "A2"
+  },
+  {
+    "question": "Q3 (false)",
+    "answer": "false",
+    "explanation": "A3"
+  },
+  {
+    "question": "Q4 (false)",
+    "answer": "false",
+    "explanation": "A4"
+  }
+]
