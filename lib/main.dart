@@ -84,14 +84,22 @@ class UpdateTextState extends State {
             color: Colors.orange,
             child: Column(children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: !answered ? Text(
-                    _currentQuestion.question,
-                    style: TextStyle(fontSize: 20.0)
-                ) : Text(
-                    (prevCorrect ? "That is correct. " : "That is wrong. ") +
-                        _currentQuestion.explanation,
-                    style: TextStyle(fontSize: 20.0)
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  height: 130,
+                  child: Scrollbar(
+                    child: SingleChildScrollView(
+                      child: !answered ? Text(
+                        _currentQuestion.question,
+                        style: TextStyle(fontSize: 20.0)
+                      ) : Text(
+                        (prevCorrect ? "That is indeed " : "That is actually ") +
+                            _currentQuestion.correctAnswer.toString() + ". " +
+                            _currentQuestion.explanation,
+                        style: TextStyle(fontSize: 20.0)
+                      ),
+                    )
+                  ),
                 ),
               ),
               Spacer(),
