@@ -23,6 +23,7 @@ class SharedData {
     if (_questions == null) {
       await readQuestions();
       _questions.shuffle(new Random());
+      randomizeDisasterOrder();
     }
 
     if (_nrQuestionsAsked == _questions.length) {
