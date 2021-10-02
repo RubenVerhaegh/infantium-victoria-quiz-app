@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/Question.dart';
 
@@ -12,6 +13,11 @@ class SharedData {
   int _nrDisasters = 10;
   int _nrQuestionsAsked = 0;
   List<int> _disasterIndices;
+  double deviceHeight(BuildContext context) => MediaQuery.of(context).size.height;
+  double deviceWidth(BuildContext context) => MediaQuery.of(context).size.width;
+  List<int> animationDuration = [11, 10, 10, 11, 9, 11, 11, 7, 10, 10];
+
+  Color _offWhite = Color.fromRGBO(249, 243, 222, 1);
 
   factory SharedData() {
     return instance;
@@ -49,7 +55,7 @@ class SharedData {
     // _questions.add(question);
 
     try {
-      final String string = await rootBundle.loadString("lib/testquestions.json");
+      final String string = await rootBundle.loadString("lib/questions.json");
       // String content = '['
       //     '{'
       //       '"question": "This is the first test question (yes).",'
@@ -156,4 +162,5 @@ class SharedData {
   get nrDisasters => _nrDisasters;
   get disasterIndices => _disasterIndices;
   get nrUnaskedQuestions => _nrQuestionsAsked;
+  get offWhite => _offWhite;
 }

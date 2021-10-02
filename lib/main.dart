@@ -31,14 +31,6 @@ class MainLayout extends StatelessWidget {
       backgroundColor: Color.fromRGBO(250, 250, 250, 1),
       body: new Stack(
         children: <Widget>[
-          new Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                  image: new AssetImage("assets/images/Milky-Way-Galaxy.jpg"),
-                  fit: BoxFit.cover
-              ),
-            ),
-          ),
           new Center(
             child: UpdateText(),
           )
@@ -54,8 +46,10 @@ class UpdateText extends StatefulWidget {
 
 class UpdateTextState extends State {
   Question _currentQuestion = new Question("", true, "");
-  bool answered    = false;
-  bool prevCorrect = true;
+  bool showingQuestion = true;
+  bool showingAnimation = false;
+  bool correctlyAnswered;
+  // bool answered    = false;
   SharedData sd = SharedData.instance;
 
   @override
@@ -76,24 +70,55 @@ class UpdateTextState extends State {
   Widget build(BuildContext context) {
     return
       Stack(children: <Widget> [
+        Image.asset(
+          "images/stills1/" + sd.nrWrongAnswers.toString() + ".png",
+          fit: BoxFit.fitHeight,
+        ),
+        if (showingAnimation) Image.asset(
+          "animations/screen1/" + (sd.nrWrongAnswers + 1).toString() + ".gif",
+          fit: BoxFit.fitHeight,
+        ),
         Column(children: <Widget>[
           Container(
-            margin: EdgeInsets.fromLTRB(30, 50, 30, 10),
-            height: 180,
+            margin: EdgeInsets.fromLTRB(30, 0.05*sd.deviceHeight(context), 30, 10),
+            height: (0.4 - 2*0.05)*sd.deviceHeight(context),
             width: 350,
-            color: Colors.orange,
+            decoration: BoxDecoration(
+              color: sd.offWhite,
+              border: Border.all(
+                color: sd.offWhite,
+              ),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
             child: Column(children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Container(
                   height: 130,
+                  width: 340,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.07),
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0),
+                    ),
+                    borderRadius: BorderRadius.circular(7.5)
+                  ),
                   child: Scrollbar(
                     child: SingleChildScrollView(
-                      child: !answered ? Text(
+                      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                      child: showingQuestion ? Text(
                         _currentQuestion.question,
                         style: TextStyle(fontSize: 20.0)
                       ) : Text(
-                        (prevCorrect ? "That is indeed " : "That is actually ") +
+                        (correctlyAnswered ? "That is indeed " : "That is actually ") +
                             _currentQuestion.correctAnswer.toString() + ". " +
                             _currentQuestion.explanation,
                         style: TextStyle(fontSize: 20.0)
@@ -107,65 +132,46 @@ class UpdateTextState extends State {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  !answered ? Container(
-                    margin: EdgeInsets.all(0),
-                    child: TextButton(
+                  if (showingQuestion) Container(
+                    margin: EdgeInsets.fromLTRB(10,0,10,0),
+                    child: ElevatedButton(
                       child: Text('True', style: TextStyle(fontSize: 20.0),),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.green)
+                      ),
                       onPressed: () {
                         answerQuestion(true);
                       },
                     ),
-                  ) : Container(),
-                  !answered ? Container(
-                    margin: EdgeInsets.all(0),
-                    child: TextButton(
+                  ),
+                  if (showingQuestion) Container(
+                    margin: EdgeInsets.fromLTRB(10,0,10,0),
+                    child: ElevatedButton(
                       child: Text('False', style: TextStyle(fontSize: 20.0),),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.red)
+                      ),
                       onPressed: () {
                         answerQuestion(false);
                       },
                     ),
-                  ) : Container(),
-                  answered ? Container(
+                  ),
+                  if(!showingQuestion) Container(
                     margin: EdgeInsets.all(0),
-                    child: TextButton(
-                      child: Text('Next', style: TextStyle(fontSize: 20.0),),
+                    child: ElevatedButton(
+                      child: Text('Continue', style: TextStyle(fontSize: 20.0),),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
+                      ),
                       onPressed: () {
-                        nextQuestion();
+                        continueAfterAnswer();
                       },
                     ),
-                  ) : Container(),
+                  ),
                 ],
               ),
             ]),
           ),
-          Stack(children: [
-            new Container(
-              height: 300,
-              width:  300,
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                    image: new AssetImage("assets/images/earth_start.png"),
-                    fit: BoxFit.scaleDown
-                ),
-              ),
-            ),
-            for (var i = 0; i < min(sd.nrWrongAnswers, sd.nrDisasters); i++) new Container(
-              height: 300,
-              width:  300,
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                    image: new AssetImage("assets/images/disaster" +
-                        sd.disasterIndices[i].toString() +
-                        ".png"),
-                    fit: BoxFit.scaleDown
-                ),
-              ),
-            ),
-          ]),
-          Text(sd.nrGoodAnswers.toString()  + " good answers",
-              style: TextStyle(color: Colors.white)),
-          Text(sd.nrWrongAnswers.toString() + " wrong answers",
-              style: TextStyle(color: Colors.white))
         ]),
         Positioned(
           bottom: 20,
@@ -182,10 +188,11 @@ class UpdateTextState extends State {
               color: Colors.green,
               elevation: 2.0,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SecondRoute()));
-                },
-
+                Future.delayed(const Duration(milliseconds: 500), () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SecondRoute()));
+                });
+              },
             ),
             if (sd.nrGoodAnswers > 0) notificationDot(sd.nrGoodAnswers),
           ]),
@@ -196,42 +203,62 @@ class UpdateTextState extends State {
   void nextQuestion() async {
     var newQuestion = await sd.randomQuestion();
     setState(() {
-      answered = false;
+      showingQuestion = true;
+      showingAnimation = false;
       _currentQuestion = newQuestion;
     });
   }
 
+  void continueAfterAnswer() async {
+    if (correctlyAnswered) {
+      // First do stuff here
+      sd.goodAnswer();
+      nextQuestion();
+    } else {
+      setState(() {
+        showingAnimation = true;
+      });
+
+      int delayTime = 1000 * sd.animationDuration[sd.nrWrongAnswers];
+      print('DELAY TIME = ' + delayTime.toString());
+      Future.delayed(Duration(milliseconds: delayTime), () {
+        sd.wrongAnswer();
+        if (sd.nrWrongAnswers == 1) {
+          Dialogs.materialDialog(
+              context: context,
+              title: "Actions have consequences",
+              msg: "As you can see, our decisions impact the world directly. "
+                  "Make too many wrong decisions and the earth will be destroyed.",
+              actions: [
+                IconsButton(
+                  text: "Continue",
+                  iconData: Icons.navigate_next,
+                  color: Colors.blue,
+                  textStyle: TextStyle(color: Colors.white),
+                  iconColor: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    nextQuestion();
+                  },
+                )
+              ]
+          );
+        } else {
+          setState(() {
+            nextQuestion();
+          });
+        }
+      });
+
+    }
+  }
+
   void answerQuestion(bool givenAnswer) {
     bool correct = (givenAnswer == _currentQuestion.correctAnswer);
-    if (correct) {
-      sd.goodAnswer();
-    } else {
-      sd.wrongAnswer();
-      if (sd.nrWrongAnswers == 1) {
-        Dialogs.materialDialog(
-          context: context,
-          title: "Actions have consequences",
-          msg: "As you can see, our decisions impact the world directly. "
-              "Make too many wrong decisions and the earth will be destroyed.",
-          actions: [
-            IconsButton(
-              text: "Continue",
-              iconData: Icons.navigate_next,
-              color: Colors.blue,
-              textStyle: TextStyle(color: Colors.white),
-              iconColor: Colors.white,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            )
-          ]
-        );
-      }
-    }
 
     setState(() {
-      prevCorrect = correct;
-      answered = true;
+      correctlyAnswered = correct;
+      showingQuestion = false;
     });
   }
 
