@@ -28,7 +28,7 @@ class MainLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(250, 250, 250, 1),
+      backgroundColor: Color.fromRGBO(0, 0, 0, 1),
       body: new Stack(
         children: <Widget>[
           new Center(
@@ -70,6 +70,10 @@ class UpdateTextState extends State {
   Widget build(BuildContext context) {
     return
       Stack(children: <Widget> [
+        if (sd.nrWrongAnswers < 10) Image.asset(
+          "images/stills1/" + (sd.nrWrongAnswers+1).toString() + ".png",
+          fit: BoxFit.fitHeight,
+        ),
         Image.asset(
           "images/stills1/" + sd.nrWrongAnswers.toString() + ".png",
           fit: BoxFit.fitHeight,
