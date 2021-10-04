@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:myapp/SharedData.dart';
 import 'package:material_dialogs/material_dialogs.dart';
+import 'package:video_player/video_player.dart';
 
 import 'Question.dart';
 
@@ -28,7 +29,7 @@ class MainLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(0, 0, 0, 1),
+      backgroundColor: Color.fromRGBO(0, 6, 20, 1),
       body: new Stack(
         children: <Widget>[
           new Center(
@@ -41,16 +42,19 @@ class MainLayout extends StatelessWidget {
 }
 
 class UpdateText extends StatefulWidget {
-  UpdateTextState createState() => UpdateTextState();
+  @override
+  _UpdateTextState createState() => _UpdateTextState();
 }
 
-class UpdateTextState extends State {
+class _UpdateTextState extends State {
+  SharedData sd = SharedData.instance;
   Question _currentQuestion = new Question("", true, "");
   bool showingQuestion = true;
   bool showingAnimation = false;
   bool correctlyAnswered;
-  // bool answered    = false;
-  SharedData sd = SharedData.instance;
+
+  VideoPlayerController _videoPlayerController;
+  Future<void> _initializedVideoPlayerFuture;
 
   @override
   void initState() {
@@ -58,10 +62,20 @@ class UpdateTextState extends State {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _videoPlayerController.dispose();
+  }
+
   _setup() async {
     Question question = await sd.randomQuestion();
     setState(() {
       _currentQuestion = question;
+      _videoPlayerController = VideoPlayerController.asset(
+        "animations/screen1/1.mp4",
+      );
+      _initializedVideoPlayerFuture = _videoPlayerController.initialize();
       print("QUESTION:" + question.question);
     });
   }
@@ -78,11 +92,23 @@ class UpdateTextState extends State {
           "images/stills1/" + sd.nrWrongAnswers.toString() + ".png",
           fit: BoxFit.fitHeight,
         ),
-        if (showingAnimation) Image.asset(
-          "animations/screen1/" + (sd.nrWrongAnswers + 1).toString() + ".gif",
-          fit: BoxFit.fitHeight,
-        ),
-        Column(children: <Widget>[
+        if (showingAnimation)
+          FutureBuilder(
+            future: _initializedVideoPlayerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return AspectRatio(
+                  aspectRatio: _videoPlayerController.value.aspectRatio,
+                  child: VideoPlayer(_videoPlayerController),
+                );
+              } else {
+                return Center();
+              }
+            },
+          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
           Container(
             margin: EdgeInsets.fromLTRB(30, 0.05*sd.deviceHeight(context), 30, 10),
             height: (0.4 - 2*0.05)*sd.deviceHeight(context),
@@ -192,10 +218,9 @@ class UpdateTextState extends State {
               color: Colors.green,
               elevation: 2.0,
               onPressed: () {
-                Future.delayed(const Duration(milliseconds: 500), () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SecondRoute()));
-                });
+                if (!showingAnimation) {
+                  MaterialPageRoute(builder: (context) => SecondRoute());
+                }
               },
             ),
             if (sd.nrGoodAnswers > 0) notificationDot(sd.nrGoodAnswers),
@@ -221,9 +246,12 @@ class UpdateTextState extends State {
     } else {
       setState(() {
         showingAnimation = true;
+        _videoPlayerController.play();
+        _videoPlayerController.pause();
+        _videoPlayerController.play();
       });
 
-      int delayTime = 1000 * sd.animationDuration[sd.nrWrongAnswers];
+      int delayTime = 1000 * (sd.animationDuration[sd.nrWrongAnswers] + 1);
       print('DELAY TIME = ' + delayTime.toString());
       Future.delayed(Duration(milliseconds: delayTime), () {
         sd.wrongAnswer();
@@ -242,19 +270,28 @@ class UpdateTextState extends State {
                   iconColor: Colors.white,
                   onPressed: () {
                     Navigator.of(context).pop();
-                    nextQuestion();
+                    continueAfterWrongAnswer();
                   },
                 )
               ]
           );
         } else {
           setState(() {
-            nextQuestion();
+            continueAfterWrongAnswer();
           });
         }
       });
 
     }
+  }
+
+  void continueAfterWrongAnswer() {
+    _videoPlayerController = VideoPlayerController.asset(
+      "animations/screen1/" + (sd.nrWrongAnswers + 1).toString() + ".mp4",
+    );
+    _initializedVideoPlayerFuture = _videoPlayerController.initialize();
+    _videoPlayerController.setLooping(false);
+    nextQuestion();
   }
 
   void answerQuestion(bool givenAnswer) {
@@ -284,6 +321,9 @@ class UpdateTextState extends State {
     );
   }
 }
+
+
+
 
 /* ============
  * SECOND ROUTE
