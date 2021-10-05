@@ -7,7 +7,7 @@
   {
     "question": "Silk is a cruelty free material.",
     "answer": "false",
-    "explanation": "Silk is not a cruelty free material. To make one scarf, over 300 silkworm are cooked alive.  'Peace silk' is an alternative way of raising silkworms, allowing the silkworms to emerge from their cocoon and complete their 'natural' life cycle before harvesting their cocoon."
+    "explanation": "Silk is not a cruelty free material. To make one scarf, over 300 silkworm are cooked alive. 'Peace silk' is an alternative way of raising silkworms, allowing the silkworms to emerge from their cocoon and complete their 'natural' life cycle before harvesting their cocoon."
   },
   {
     "question": "Billie Eilish is a vegan celebrity.",
@@ -22,12 +22,12 @@
   {
     "question": "Finishing, dyeing and tanning are the most environmentally unfriendly parts of leather production.",
     "answer": "false",
-    "explanation": "The raising of the live stock is the most environmentally unfriendly. The amount of methane produced by raising cows and other bovines is overwhelming. But tanning is a close runner up !"
+    "explanation": "The raising of the live stock is the most environmentally unfriendly. The amount of methane produced by raising cows and other bovines is overwhelming. But tanning is a close runner up!"
   },
   {
-    "question": "About 110 million meters of textile is made each year. 1 million of that becomes cutting waste, or about 1% of the total volume.",
+    "question": "According to textile exchange 2020, about 110 million meters of textile is made each year. 1 million of that becomes cutting waste, or about 1% of the total volume.",
     "answer": "false",
-    "explanation": "About 12,5 – 15 percent of all textile never becomes a garment but ends as cutting floor waste, also called pre-consumer waste. *(According to textile exchange 2020)"
+    "explanation": "About 12,5 – 15 percent of all textile never becomes a garment but ends as cutting floor waste, also called pre-consumer waste."
   },
   {
     "question": "Goatskin is the most used source for leather in fashion.",
@@ -47,7 +47,7 @@
   {
     "question": "Nylon tights decompose in 2-5 years in landfill.",
     "answer": "false",
-    "explanation": "Nylon tights will survive about 30 – 40 years before decomposition. And when they finally decompose, they pollute groundwater with chemicals."
+    "explanation": "Nylon tights will survive about 30–40 years before decomposition. And when they finally decompose, they pollute groundwater with chemicals."
   },
   {
     "question": "It takes about 2 weeks for a linen top to decompose in a landfill.",
@@ -57,17 +57,17 @@
   {
     "question": "Around 1950, buying clothing consumed on average 33% of a household budget. Today buying clothing takes up 25 % of a household budget.",
     "answer": "false",
-    "explanation": "It is true that in 1950 13 of the household budget was spent on textile. However, today only 5% of a household budget goes to textile, but not because we buy less, but because the prices and value dropped dramatically."
+    "explanation": "It is true that in 1950 13% of the household budget was spent on textile. However, today only 5% of a household budget goes to textile, but not because we buy less, but because the prices and value dropped dramatically."
   },
   {
     "question": "Leicester is one of the biggest fast fashion producing cities in the UK. The average salary for a seamstress is 11£ an hour.",
     "answer": "false",
-    "explanation": "Leicester is a hot spot for fast fashion production, but, the average salary is 3£ an hour which is under the UK’s minimum wage of 7£h. The salary is paid cash and an employer can sometimes require an unpaid trial period of two weeks."
+    "explanation": "Leicester is a hot spot for fast fashion production, but the average salary is 3£ an hour which is under the UK’s minimum wage of 7£/h. The salary is paid cash and an employer can sometimes require an unpaid trial period of two weeks."
   },
   {
     "question": "Zara launches 6500 new products every year.",
     "answer": "false",
-    "explanation": "Zara releases 65 000 new products every year, this translates to about 200 new products per day."
+    "explanation": "Zara releases 65,000 new products every year. This translates to about 200 new products per day."
   },
   {
     "question": "In North America, 10.5 million tons of clothing is sent to landfill every year. That’s about 30 times as heavy as the Empire State Building.",
@@ -77,7 +77,7 @@
   {
     "question": "Globally only 20% of textiles are recycled, meaning the other 80% are lost to landfill or incineration.",
     "answer": "true",
-    "explanation": "This is true. Moreover, the recycling happens in the form of down cycling, the textile becomes furniture stuffing, rags or insulation."
+    "explanation": "Moreover, the recycling happens in the form of down-cycling, the textile becomes furniture stuffing, rags or insulation."
   },
   {
     "question": "Less than 1% of collected garments is truly recycled into fresh textiles.",
@@ -87,7 +87,7 @@
   {
     "question": "Of the 2,400 substances used in clothing manufacturing, researchers found that approximately 30% of the identified substances posed a risk to human health.",
     "answer": "true",
-    "explanation": "Especially the wet processing uses many chemicals that are intended on changing or optimizing the fabric, many of those are toxic or suspected of being toxic."
+    "explanation": "Especially the wet processing uses many chemicals that are intended on changing or optimizing the fabric, many of those are toxic or suspected to be toxic."
   },
   {
     "question": "In the UK, 26% of consumers reported that the last item of clothing they threw away, was discarded because the consumer didn’t like it anymore.",
@@ -95,9 +95,9 @@
     "explanation": "Those garments are thrown away not because they are broken or don’t fit anymore. They are discarded because they are not liked anymore, considered out of fashion or simply served their purpose to be in a social media post."
   },
   {
-    "question": "When making a jeans, most water is polluted growing the plants.",
+    "question": "When making a pair of jeans, most water is polluted growing the plants.",
     "answer": "false",
-    "explanation": "When growing cotton or other plant-based materials with the use of pesticides, this will pollute the groundwater. However, the dying and finishing of the jeans pollute many more liters."
+    "explanation": "When growing cotton or other plant-based materials with the use of pesticides, this will pollute the groundwater. However, the dyeing and finishing of the jeans pollute many more liters."
   },
   {
     "question": "It is estimated that we purchase 400% more textile today then we did 30 years ago.",
@@ -112,7 +112,7 @@
   {
     "question": "Regarding the textile industry, men are smaller consumers than women.",
     "answer": "false",
-    "explanation": "Influenced by social medias, men consume as many garments as women nowadays."
+    "explanation": "Influenced by social media, men consume as many garments as women nowadays."
   },
   {
     "question": "In the eyes of the Belgian law, in a case of plagiarism, 15 differences need to be found in two similar garments in order for both garments to be considered different.",
@@ -122,12 +122,12 @@
   {
     "question": "In most metropolitan cities around the globe, deliveries represents 10% of Co2 emissions from all transports. In these 10%, a third are clothing purchases.",
     "answer": "true",
-    "explanation": "And the delivery emissions are only growing, with consumers wanting same day deliveries, making many seperate deliver-at-home orders, each time for one item. And consumers ordering a variety with the intention of only keeping one, and returning all the others, for free."
+    "explanation": "And the delivery emissions are only growing, with consumers wanting same day deliveries, making many separate deliver-at-home orders, each time for one item. And consumers ordering a variety with the intention of only keeping one, and returning all the others, for free."
   },
   {
     "question": "The textile industry is the 2nd most polluting industry in the world.",
     "answer": "false",
-    "explanation": "This is a strange number, that has an obscure origin. First off, the statement is empty without definition of what is an industry, 2nd the textile industry is vast, but which aspects are included in this statement The food, transport, electronics industries are all also very polluting, each industry just has different focus points."
+    "explanation": "This is a strange number, that has an obscure origin. First off, the statement is empty without definition of what is an industry. Secondly, the textile industry is vast, but which aspects are included in this statement? The food, transport, electronics industries are all also very polluting, each industry just has different focus points."
   },
   {
     "question": "For 1 ton of produced garments, 200 tons of water gets polluted.",
@@ -147,7 +147,7 @@
   {
     "question": "Every year, 25% of produced chemicals are used in the textile industry.",
     "answer": "true",
-    "explanation": "This seems an absurd high number, but cotton consumes vast amounts of chemicals in the cultivation and processing. Sheep are treated with heavy chemicals to avoid insects like flystrike, wet processing uses tons of chemicals to create all different touches and feels we enjoy. Making viscose, bamboo, polyester, nylon requires a fully chemical process, not to mention the chemicals needed to convert animal hides into leather."
+    "explanation": "This seems an absurdly high number, but cotton consumes vast amounts of chemicals in the cultivation and processing. Sheep are treated with heavy chemicals to avoid insects like flystrike, wet processing uses tons of chemicals to create all different touches and feels we enjoy. Making viscose, bamboo, polyester, nylon requires a fully chemical process, not to mention the chemicals needed to convert animal hides into leather."
   },
   {
     "question": "Around 700 tons of tights are produced and sold globally every year.",
