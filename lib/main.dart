@@ -161,7 +161,7 @@ class _UpdateTextState extends State {
                 ) : Text(
                     (correctlyAnswered ? "That is indeed " : "That is actually ") +
                         _currentQuestion.correctAnswer.toString() + ". " +
-                        _currentQuestion.explanation,
+                        _currentQuestion.explanation + "\n",
                     style: TextStyle(fontSize: 20.0)
                 ),
               )
@@ -204,12 +204,22 @@ class _UpdateTextState extends State {
                 if(!showingQuestion) Container(
                   margin: EdgeInsets.all(0),
                   child: ElevatedButton(
-                    child: Text('Continue', style: TextStyle(fontSize: 20.0),),
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: !showingAnimation
+                            ? Colors.white
+                            : Color.fromRGBO(200, 200, 200, 1)
+                      ),
+                    ),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
+                        backgroundColor: !showingAnimation
+                            ? MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
+                            : MaterialStateProperty.all(Color.fromRGBO(80, 80, 80, 1))
                     ),
                     onPressed: () {
-                      continueAfterAnswer();
+                      if (!showingAnimation) continueAfterAnswer();
                     },
                   ),
                 ),
