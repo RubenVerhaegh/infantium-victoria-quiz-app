@@ -29,7 +29,7 @@ class MainLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+      backgroundColor: Color.fromRGBO(0, 0, 0, 1),
       body: new Stack(
         children: <Widget>[
           new Center(
@@ -109,7 +109,7 @@ class _UpdateTextState extends State {
               color: Colors.green,
               elevation: 2.0,
               onPressed: () {
-                if (!showingAnimation) {
+                if (!showingAnimation && tokenPhase == 0) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => SecondRoute())
@@ -187,7 +187,7 @@ class _UpdateTextState extends State {
                   child: ElevatedButton(
                     child: Text('True', style: TextStyle(fontSize: 20.0),),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.green)
+                      backgroundColor: MaterialStateProperty.all(Colors.green),
                     ),
                     onPressed: () {
                       answerQuestion(true);
@@ -213,18 +213,18 @@ class _UpdateTextState extends State {
                       'Continue',
                       style: TextStyle(
                         fontSize: 20.0,
-                        color: !showingAnimation
+                        color: !showingAnimation && tokenPhase == 0
                             ? Colors.white
                             : Color.fromRGBO(200, 200, 200, 1)
                       ),
                     ),
                     style: ButtonStyle(
-                        backgroundColor: !showingAnimation
+                        backgroundColor: !showingAnimation && tokenPhase == 0
                             ? MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
                             : MaterialStateProperty.all(Color.fromRGBO(80, 80, 80, 1))
                     ),
                     onPressed: () {
-                      if (!showingAnimation) continueAfterAnswer();
+                      if (!showingAnimation && tokenPhase == 0) continueAfterAnswer();
                     },
                   ),
                 ),
@@ -293,7 +293,7 @@ class _UpdateTextState extends State {
       setState(() {
         tokenPhase = 1;
       });
-      Future.delayed(const Duration(milliseconds: 1500), () {
+      Future.delayed(const Duration(milliseconds: 1200), () {
         setState(() {
           tokenPhase = 2;
         });
