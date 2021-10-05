@@ -108,7 +108,10 @@ class _UpdateTextState extends State {
               elevation: 2.0,
               onPressed: () {
                 if (!showingAnimation) {
-                  MaterialPageRoute(builder: (context) => SecondRoute());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondRoute())
+                  );
                 }
               },
             ),
