@@ -52,6 +52,7 @@ class _UpdateTextState extends State {
   bool showingQuestion = true;
   bool showingAnimation = false;
   bool correctlyAnswered;
+  int tokenPhase = 0;
 
   VideoPlayerController _videoPlayerController;
   Future<void> _initializedVideoPlayerFuture;
@@ -92,6 +93,7 @@ class _UpdateTextState extends State {
           alignment: Alignment.topCenter,
           child: questionCard(),
         ),
+        tokenAnimation(),
         Positioned(
           bottom: 20,
           right: 20,
@@ -263,6 +265,20 @@ class _UpdateTextState extends State {
     );
   }
 
+  AnimatedPositioned tokenAnimation() {
+    return AnimatedPositioned(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.fastOutSlowIn,
+      width: (tokenPhase == 1) ? 0.111 * sd.frameHeight(context) : 0,
+      bottom: (tokenPhase == 2) ? 45 : 90,
+      right: (tokenPhase == 2) ? 45 : 20,
+      child: Image.asset(
+        "images/tokens/example-token-" + (sd.nrGoodAnswers + 1).toString() + ".png",
+        fit: BoxFit.fitHeight,
+      ),
+    );
+  }
+
   void nextQuestion() async {
     var newQuestion = await sd.randomQuestion();
     setState(() {
@@ -274,9 +290,20 @@ class _UpdateTextState extends State {
 
   void continueAfterAnswer() async {
     if (correctlyAnswered) {
-      // First do stuff here
-      sd.goodAnswer();
-      nextQuestion();
+      setState(() {
+        tokenPhase = 1;
+      });
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        setState(() {
+          tokenPhase = 2;
+        });
+
+        Future.delayed(const Duration(milliseconds: 1000), () {
+          tokenPhase = 0;
+          sd.goodAnswer();
+          nextQuestion();
+        });
+      });
     } else {
       setState(() {
         showingAnimation = true;
