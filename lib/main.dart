@@ -29,7 +29,7 @@ class MainLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(0, 6, 20, 1),
+      backgroundColor: Color.fromRGBO(255, 255, 255, 1),
       body: new Stack(
         children: <Widget>[
           new Center(
@@ -84,125 +84,14 @@ class _UpdateTextState extends State {
   Widget build(BuildContext context) {
     return
       Stack(children: <Widget> [
-        if (sd.nrWrongAnswers < 10) Image.asset(
-          "images/stills1/" + (sd.nrWrongAnswers+1).toString() + ".png",
-          fit: BoxFit.fitHeight,
+        Align(
+          alignment: Alignment.topCenter,
+          child: earth(),
         ),
-        Image.asset(
-          "images/stills1/" + sd.nrWrongAnswers.toString() + ".png",
-          fit: BoxFit.fitHeight,
+        Align(
+          alignment: Alignment.topCenter,
+          child: questionCard(),
         ),
-        if (showingAnimation)
-          FutureBuilder(
-            future: _initializedVideoPlayerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return AspectRatio(
-                  aspectRatio: _videoPlayerController.value.aspectRatio,
-                  child: VideoPlayer(_videoPlayerController),
-                );
-              } else {
-                return Center();
-              }
-            },
-          ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-          Container(
-            margin: EdgeInsets.fromLTRB(30, 0.05*sd.deviceHeight(context), 30, 10),
-            height: (0.4 - 2*0.05)*sd.deviceHeight(context),
-            width: 350,
-            decoration: BoxDecoration(
-              color: sd.offWhite,
-              border: Border.all(
-                color: sd.offWhite,
-              ),
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Column(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Container(
-                  height: 130,
-                  width: 340,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.07),
-                    border: Border.all(
-                      color: Colors.black.withOpacity(0),
-                    ),
-                    borderRadius: BorderRadius.circular(7.5)
-                  ),
-                  child: Scrollbar(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                      child: showingQuestion ? Text(
-                        _currentQuestion.question,
-                        style: TextStyle(fontSize: 20.0)
-                      ) : Text(
-                        (correctlyAnswered ? "That is indeed " : "That is actually ") +
-                            _currentQuestion.correctAnswer.toString() + ". " +
-                            _currentQuestion.explanation,
-                        style: TextStyle(fontSize: 20.0)
-                      ),
-                    )
-                  ),
-                ),
-              ),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if (showingQuestion) Container(
-                    margin: EdgeInsets.fromLTRB(10,0,10,0),
-                    child: ElevatedButton(
-                      child: Text('True', style: TextStyle(fontSize: 20.0),),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.green)
-                      ),
-                      onPressed: () {
-                        answerQuestion(true);
-                      },
-                    ),
-                  ),
-                  if (showingQuestion) Container(
-                    margin: EdgeInsets.fromLTRB(10,0,10,0),
-                    child: ElevatedButton(
-                      child: Text('False', style: TextStyle(fontSize: 20.0),),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.red)
-                      ),
-                      onPressed: () {
-                        answerQuestion(false);
-                      },
-                    ),
-                  ),
-                  if(!showingQuestion) Container(
-                    margin: EdgeInsets.all(0),
-                    child: ElevatedButton(
-                      child: Text('Continue', style: TextStyle(fontSize: 20.0),),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
-                      ),
-                      onPressed: () {
-                        continueAfterAnswer();
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ]),
-          ),
-        ]),
         Positioned(
           bottom: 20,
           right: 20,
@@ -227,6 +116,138 @@ class _UpdateTextState extends State {
           ]),
         ),
       ]);
+  }
+
+  Container questionCard() {
+    return Container(
+      margin: EdgeInsets.only(top: 0.098 * sd.frameHeight(context)),
+      height: 0.286 * sd.frameHeight(context),
+      width: 0.826 * sd.frameWidth(context),
+      decoration: BoxDecoration(
+        color: sd.offWhite,
+        border: Border.all(
+          color: sd.offWhite,
+        ),
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child:
+      Stack(children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Container(
+            height: 0.221 * sd.frameHeight(context),
+            width: 0.795  * sd.frameWidth(context),
+            decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.07),
+                border: Border.all(
+                  color: Colors.black.withOpacity(0),
+                ),
+                borderRadius: BorderRadius.circular(7.5)
+            ),
+            child: Scrollbar(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                child: showingQuestion ? Text(
+                    _currentQuestion.question,
+                    style: TextStyle(fontSize: 20.0)
+                ) : Text(
+                    (correctlyAnswered ? "That is indeed " : "That is actually ") +
+                        _currentQuestion.correctAnswer.toString() + ". " +
+                        _currentQuestion.explanation,
+                    style: TextStyle(fontSize: 20.0)
+                ),
+              )
+            ),
+          ),
+        ),
+
+        Column(children: <Widget>[
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.all(0.007 * sd.frameHeight(context)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (showingQuestion) Container(
+                  margin: EdgeInsets.fromLTRB(10,0,10,0),
+                  child: ElevatedButton(
+                    child: Text('True', style: TextStyle(fontSize: 20.0),),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.green)
+                    ),
+                    onPressed: () {
+                      answerQuestion(true);
+                    },
+                  ),
+                ),
+                if (showingQuestion) Container(
+                  margin: EdgeInsets.fromLTRB(10,0,10,0),
+                  child: ElevatedButton(
+                    child: Text('False', style: TextStyle(fontSize: 20.0),),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.red)
+                    ),
+                    onPressed: () {
+                      answerQuestion(false);
+                    },
+                  ),
+                ),
+                if(!showingQuestion) Container(
+                  margin: EdgeInsets.all(0),
+                  child: ElevatedButton(
+                    child: Text('Continue', style: TextStyle(fontSize: 20.0),),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
+                    ),
+                    onPressed: () {
+                      continueAfterAnswer();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ])
+    );
+  }
+
+  Stack earth() {
+    return Stack(
+      children: [
+        if (sd.nrWrongAnswers < 10) Image.asset(
+          "images/stills1/" + (sd.nrWrongAnswers+1).toString() + ".png",
+          fit: BoxFit.fitHeight,
+        ),
+        if (showingAnimation)
+          FutureBuilder(
+            future: _initializedVideoPlayerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return AspectRatio(
+                  aspectRatio: _videoPlayerController.value.aspectRatio,
+                  child: VideoPlayer(_videoPlayerController),
+                );
+              } else {
+                return Center();
+              }
+            },
+          ),
+        if (!showingAnimation) Image.asset(
+          "images/stills1/" + sd.nrWrongAnswers.toString() + ".png",
+          fit: BoxFit.fitHeight,
+        ),
+      ],
+    );
   }
 
   void nextQuestion() async {

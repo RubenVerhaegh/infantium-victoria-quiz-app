@@ -13,9 +13,13 @@ class SharedData {
   int _nrDisasters = 10;
   int _nrQuestionsAsked = 0;
   List<int> _disasterIndices;
+  List<int> animationDuration = [11, 10, 10, 11, 9, 11, 11, 7, 10, 10];
+
   double deviceHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double deviceWidth(BuildContext context) => MediaQuery.of(context).size.width;
-  List<int> animationDuration = [11, 10, 10, 11, 9, 11, 11, 7, 10, 10];
+
+  double frameWidth(BuildContext context) => frameHeight(context) * 9.0 / 16.0;
+  double frameHeight(BuildContext context) => deviceHeight(context);
 
   Color _offWhite = Color.fromRGBO(249, 243, 222, 1);
 
