@@ -71,15 +71,6 @@ class _UpdateTextState extends State {
 
   _setup() async {
     Question question = await sd.randomQuestion();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
-    // sd.wrongAnswer();
     setState(() {
       _currentQuestion = question;
       _videoController = VideoPlayerController.asset(
@@ -370,7 +361,32 @@ class _UpdateTextState extends State {
       _initializedVideoPlayerFuture = _videoController.initialize();
       _videoController.setLooping(false);
       nextQuestion();
+    } else {
+      Dialogs.materialDialog(
+          context: context,
+          title: "Well, there goes planet earth...",
+          msg: "It sure was fun while it lasted, but the earth is no more. " +
+              "Your choices have ultimately destroyed our planet and everything on it.",
+          actions: [
+            IconsButton(
+              text: "Try again",
+              iconData: Icons.refresh,
+              color: Colors.blue,
+              textStyle: TextStyle(color: Colors.white),
+              iconColor: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+                restartGame();
+              },
+            )
+          ]
+      );
     }
+  }
+
+  restartGame() {
+    sd.restartGame();
+    nextQuestion();
   }
 
   void answerQuestion(bool givenAnswer) {
