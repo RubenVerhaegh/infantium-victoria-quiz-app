@@ -54,73 +54,91 @@ class _UpdateTextState extends State {
   bool correctlyAnswered;
   int tokenPhase = 0;
 
-  VideoPlayerController _videoPlayerController;
+  VideoPlayerController _videoController;
   Future<void> _initializedVideoPlayerFuture;
 
   @override
   void initState() {
-    _setup();
     super.initState();
+    _setup();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _videoPlayerController.dispose();
+    _videoController.dispose();
   }
 
   _setup() async {
     Question question = await sd.randomQuestion();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
+    sd.wrongAnswer();
     setState(() {
       _currentQuestion = question;
-      _videoPlayerController = VideoPlayerController.asset(
-        "animations/screen1/1.mp4",
+      _videoController = VideoPlayerController.asset(
+        "animations/screen1/10.mp4",
       );
-      _initializedVideoPlayerFuture = _videoPlayerController.initialize();
+      _initializedVideoPlayerFuture = _videoController.initialize();
       print("QUESTION:" + question.question);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return
-      Stack(children: <Widget> [
-        Align(
-          alignment: Alignment.topCenter,
-          child: earth(),
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: questionCard(),
-        ),
-        tokenAnimation(),
-        Positioned(
-          bottom: 20,
-          right: 20,
-          child: Stack(children: <Widget>[
-            MaterialButton(
-              child:  Icon(
-                Icons.checkroom,
-                color: Colors.white,
-              ),
-              height: 56,
-              minWidth: 56,
-              shape: CircleBorder(),
-              color: Colors.green,
-              elevation: 2.0,
-              onPressed: () {
-                if (!showingAnimation && tokenPhase == 0) {
-                  Navigator.push(
+    return Center(
+      child: Container(
+          height: sd.frameHeight(context),
+          width: sd.frameWidth(context),
+          child: firstScreenContent()
+      ),
+    );
+  }
+
+  Stack firstScreenContent() {
+    return Stack(children: <Widget> [
+      Align(
+        alignment: Alignment.topCenter,
+        child: earth(),
+      ),
+      Align(
+        alignment: Alignment.topCenter,
+        child: questionCard(),
+      ),
+      tokenAnimation(),
+      Positioned(
+        bottom: 20,
+        right: 20,
+        child: Stack(children: <Widget>[
+          MaterialButton(
+            child:  Icon(
+              Icons.checkroom,
+              color: Colors.white,
+            ),
+            height: 56,
+            minWidth: 56,
+            shape: CircleBorder(),
+            color: Colors.green,
+            elevation: 2.0,
+            onPressed: () {
+              if (!showingAnimation && tokenPhase == 0) {
+                Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => SecondRoute())
-                  );
-                }
-              },
-            ),
-            if (sd.nrGoodAnswers > 0) notificationDot(sd.nrGoodAnswers),
-          ]),
-        ),
-      ]);
+                );
+              }
+            },
+          ),
+          if (sd.nrGoodAnswers > 0) notificationDot(sd.nrGoodAnswers),
+        ]),
+      ),
+    ]);
   }
 
   Container questionCard() {
@@ -240,7 +258,7 @@ class _UpdateTextState extends State {
     return Stack(
       children: [
         if (sd.nrWrongAnswers < 10) Image.asset(
-          "images/stills1/" + (sd.nrWrongAnswers+1).toString() + ".png",
+          "images/stills1/" + (sd.nrWrongAnswers).toString() + ".png",
           fit: BoxFit.fitHeight,
         ),
         if (showingAnimation)
@@ -249,18 +267,14 @@ class _UpdateTextState extends State {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return AspectRatio(
-                  aspectRatio: _videoPlayerController.value.aspectRatio,
-                  child: VideoPlayer(_videoPlayerController),
+                  aspectRatio: _videoController.value.aspectRatio,
+                  child: VideoPlayer(_videoController),
                 );
               } else {
                 return Center();
               }
             },
           ),
-        if (!showingAnimation) Image.asset(
-          "images/stills1/" + sd.nrWrongAnswers.toString() + ".png",
-          fit: BoxFit.fitHeight,
-        ),
       ],
     );
   }
@@ -307,13 +321,15 @@ class _UpdateTextState extends State {
     } else {
       setState(() {
         showingAnimation = true;
-        _videoPlayerController.play();
-        _videoPlayerController.pause();
-        _videoPlayerController.play();
+        _videoController.play();
+        _videoController.pause();
+        _videoController.play();
       });
 
+      precacheImage(new AssetImage(
+          "images/stills1/" + (sd.nrWrongAnswers+1).toString() + ".png"),
+          context);
       int delayTime = 1000 * (sd.animationDuration[sd.nrWrongAnswers] + 1);
-      print('DELAY TIME = ' + delayTime.toString());
       Future.delayed(Duration(milliseconds: delayTime), () {
         sd.wrongAnswer();
         if (sd.nrWrongAnswers == 1) {
@@ -347,12 +363,14 @@ class _UpdateTextState extends State {
   }
 
   void continueAfterWrongAnswer() {
-    _videoPlayerController = VideoPlayerController.asset(
-      "animations/screen1/" + (sd.nrWrongAnswers + 1).toString() + ".mp4",
-    );
-    _initializedVideoPlayerFuture = _videoPlayerController.initialize();
-    _videoPlayerController.setLooping(false);
-    nextQuestion();
+    if (sd.nrWrongAnswers < 10) {
+      _videoController = new VideoPlayerController.asset(
+        "animations/screen1/" + (sd.nrWrongAnswers + 1).toString() + ".mp4",
+      );
+      _initializedVideoPlayerFuture = _videoController.initialize();
+      _videoController.setLooping(false);
+      nextQuestion();
+    }
   }
 
   void answerQuestion(bool givenAnswer) {
