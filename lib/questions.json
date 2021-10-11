@@ -72,7 +72,7 @@
   {
     "question": "In North America, 10.5 million tons of clothing is sent to landfill every year. That’s about 30 times as heavy as the Empire State Building.",
     "answer": "true",
-    "explanation": "And since over 60% is polyester or a polyester blend, it will remain there for years, not decomposing, just leaking toxins. (source Value village, The State of Reuse report 2017)"
+    "explanation": "And since over 60% is polyester or a polyester blend, it will remain there for years, not decomposing, just leaking toxins. (Source: Value village, The State of Reuse report 2017)"
   },
   {
     "question": "Globally only 20% of textiles are recycled, meaning the other 80% are lost to landfill or incineration.",
@@ -185,7 +185,7 @@
     "explanation": "It actually takes a garment worker 18 months of work, 6 days a week, anywhere between 8 – 15 hours a day to just make the amount a fast fashion brand's CEO makes during their one hour lunch break."
   },
   {
-    "question": "In the past years, some fast fashion brands have produces their garment in North Korea and therefore have contributed to the dictatorship.",
+    "question": "In the past years, some fast fashion brands have produced their garment in North Korea and therefore have contributed to the dictatorship.",
     "answer": "true",
     "explanation": "Undercover research has shown that garments labelled “made in China” can be sewn via sub-contractors in North Korea."
   },
@@ -272,7 +272,7 @@
   {
     "question": "Use of synthetic fabrics releases thousands of kilograms of micro fibres into fresh and oceanic waterways every day.",
     "answer": "true",
-    "explanation": "Micro plastic sheds from synthetic clothes when used, but mostly when washed. They are to small to be filtered out of the water, and will end up on the ocean, where any ocean life will ingest them."
+    "explanation": "Micro plastic sheds from synthetic clothes when used, but mostly when washed. They are too small to be filtered out of the water, and will end up on the ocean, where any ocean life will ingest them."
   },
   {
     "question": "It's better for the earth to sell your clothes than to donate them.",
@@ -375,7 +375,7 @@
     "explanation": "Fashion Revolution is a grass root organization, started in the aftermath of the Rana Plaza Factory disaster in 2013. It demands transparency and ethical behavior from brands and factories."
   },
   {
-    "question": "All bioplastic is compostable",
+    "question": "All bioplastic is compostable.",
     "answer": "false",
     "explanation": "Compostability is much desired but not common. It means the material would decompose in less than 180 days, under certain circumstances. It still does not mean you can just throw it away and it will decompose. Look for a compostable label like TUVCompostable."
   },
