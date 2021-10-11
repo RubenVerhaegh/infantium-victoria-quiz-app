@@ -77,7 +77,6 @@ class _UpdateTextState extends State {
         "animations/screen1/1.mp4",
       );
       _initializedVideoPlayerFuture = _videoController.initialize();
-      print("QUESTION:" + question.question);
     });
   }
 
@@ -119,9 +118,26 @@ class _UpdateTextState extends State {
             elevation: 2.0,
             onPressed: () {
               if (!showingAnimation && tokenPhase == 0) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SecondRoute())
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => SecondRoute())
+                // );
+                Dialogs.materialDialog(
+                    context: context,
+                    msg: "Come back here later to visit the sustainable t-shirt workplace!",
+                    actions: [
+                      IconsButton(
+                        text: "Continue",
+                        iconData: Icons.navigate_next,
+                        color: Colors.blue,
+                        textStyle: TextStyle(color: Colors.white),
+                        iconColor: Colors.white,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          continueAfterWrongAnswer();
+                        },
+                      )
+                    ]
                 );
               }
             },
@@ -367,6 +383,7 @@ class _UpdateTextState extends State {
           title: "Well, there goes planet earth...",
           msg: "It sure was fun while it lasted, but the earth is no more. " +
               "Your choices have ultimately destroyed our planet and everything on it.",
+          barrierDismissible: false,
           actions: [
             IconsButton(
               text: "Try again",
@@ -386,7 +403,7 @@ class _UpdateTextState extends State {
 
   restartGame() {
     sd.restartGame();
-    nextQuestion();
+    continueAfterWrongAnswer();
   }
 
   void answerQuestion(bool givenAnswer) {
