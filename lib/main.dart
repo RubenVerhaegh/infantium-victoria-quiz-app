@@ -134,7 +134,6 @@ class _UpdateTextState extends State {
                         iconColor: Colors.white,
                         onPressed: () {
                           Navigator.of(context).pop();
-                          continueAfterWrongAnswer();
                         },
                       )
                     ]
@@ -322,7 +321,32 @@ class _UpdateTextState extends State {
         Future.delayed(const Duration(milliseconds: 1000), () {
           tokenPhase = 0;
           sd.goodAnswer();
-          nextQuestion();
+          if (sd.nrGoodAnswers == sd.nrDisasters) {
+            Dialogs.materialDialog(
+                context: context,
+                barrierDismissible: false,
+                title: "Earth is saved!",
+                msg: "You did it, you saved earth! Your sustainable choices have" +
+                    "prevented the earth from being destroyed. Thanks for that!" +
+                    "\n\nYou can of course always play again to learn even more.",
+
+                actions: [
+                  IconsButton(
+                    text: "Play again",
+                    iconData: Icons.refresh,
+                    color: Colors.blue,
+                    textStyle: TextStyle(color: Colors.white),
+                    iconColor: Colors.white,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      restartGame();
+                    },
+                  )
+                ]
+            );
+          } else {
+            nextQuestion();
+          }
         });
       });
     } else {
