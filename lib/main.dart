@@ -71,19 +71,19 @@ class _UpdateTextState extends State {
 
   _setup() async {
     Question question = await sd.randomQuestion();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
-    sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
+    // sd.wrongAnswer();
     setState(() {
       _currentQuestion = question;
       _videoController = VideoPlayerController.asset(
-        "animations/screen1/10.mp4",
+        "animations/screen1/1.mp4",
       );
       _initializedVideoPlayerFuture = _videoController.initialize();
       print("QUESTION:" + question.question);
@@ -257,7 +257,7 @@ class _UpdateTextState extends State {
   Stack earth() {
     return Stack(
       children: [
-        if (sd.nrWrongAnswers < 10) Image.asset(
+        if (sd.nrWrongAnswers < sd.nrDisasters) Image.asset(
           "images/stills1/" + (sd.nrWrongAnswers).toString() + ".png",
           fit: BoxFit.fitHeight,
         ),
@@ -363,7 +363,7 @@ class _UpdateTextState extends State {
   }
 
   void continueAfterWrongAnswer() {
-    if (sd.nrWrongAnswers < 10) {
+    if (sd.nrWrongAnswers < sd.nrDisasters) {
       _videoController = new VideoPlayerController.asset(
         "animations/screen1/" + (sd.nrWrongAnswers + 1).toString() + ".mp4",
       );
@@ -400,8 +400,6 @@ class _UpdateTextState extends State {
     );
   }
 }
-
-
 
 
 /* ============
