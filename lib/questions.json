@@ -457,7 +457,7 @@
   {
     "question": "Line drying and machine drying has the same environmental impact.",
     "answer": "false",
-    "explanation": "Line drying needs to energy, and it actually has a positive impact because it evaporates the excess water into the air instead of into the sewage system."
+    "explanation": "Line drying does not need energy. It actually has a positive impact because it evaporates the excess water into the air instead of into the sewage system."
   },
   {
     "question": "Buying organic clothing saves bees.",
@@ -467,7 +467,7 @@
   {
     "question": "Regenerative agriculture is the less environmentally friendly brother of organic farming.",
     "answer": "false",
-    "explanation": "Regenerative farming uses the ideas of organic farming, but aims further to not only keep the status quo, but to activly improve the quality if the soil, and the lives of the people living around and of the soil."
+    "explanation": "Regenerative farming uses the ideas of organic farming, but it also aims to not only keep the status quo, but to actively improve the quality of the soil, and the lives of the people living around and of the soil."
   },
   {
     "question": "1% or all cotton is organic cotton.",
