@@ -232,7 +232,7 @@
   {
     "question": "The average person buys 60% more items of clothing and keeps them as long as they did 15 years ago.",
     "answer": "false",
-    "explanation": "The average person does buy 60% more than they did 15 years ago, but only keeps the items HALF as long as 15years ago."
+    "explanation": "The average person does buy 60% more than they did 15 years ago, but only keeps the items HALF as long as 15 years ago."
   },
   {
     "question": "Fewer than 1 % of garments are recycled into new clothing each year, and only 20 % of textiles are recycled at all.",
@@ -260,7 +260,7 @@
     "explanation": "Each production step has an environmental impact due to water, material, chemical and energy use. But almost all production decisions are implicitly decided in the design."
   },
   {
-    "question": " Increasing garment lifetimes is one of the most effective means of reducing their environmental footprint.",
+    "question": "Increasing garment lifetimes is one of the most effective means of reducing their environmental footprint.",
     "answer": "true",
     "explanation": "If the number of times a garment is worn were doubled, the greenhouse gas emissions over it's lifetime would be immediately 44% lower"
   },
@@ -297,7 +297,7 @@
   {
     "question": "Washing and drying 1 kilogram of clothing over its entire life cycle creates 11 kilograms of greenhouse gases.",
     "answer": "true",
-    "explanation": "To reduce the greenhouse gases released during the “use phase” consider washing at lower temperatures or cold, wash only when really necessary, search for non toxic washing powder or paper strips, with as little packaging or no packaging. And line dry outside. So the excess water evaporates in the air, instead of going down the sewage system."
+    "explanation": "To reduce the greenhouse gases released during the “use phase” consider washing at lower or cold temperatures. Wash only when really necessary, search for non-toxic washing powder or paper strips, with as little possible packaging or no packaging. And line dry outside, so the excess water evaporates in the air, instead of going down the sewage system."
   },
   {
     "question": "There’s very little action we can take as consumers to change the fashion industry.",
@@ -317,7 +317,7 @@
   {
     "question": "It takes more water to grow conventional cotton as opposed to organic cotton.",
     "answer": "false",
-    "explanation": "It takes roughly 2700 liters of water to create 1 kg of cotton. (this depends highly on the region under scrutiny) Organic cotton uses the same, but 80% of its water is coming from rainfall, not irrigation. On top of this, organic farming creates soil that holds more carbon, making it easier for the soil to hold on to rainwater and they dont use chemicals that would end up in the groundwater."
+    "explanation": "It takes roughly 2700 liters of water to create 1 kg of cotton. (This depends highly on the region under scrutiny). Organic cotton uses the same, but 80% of its water is coming from rainfall, not irrigation. On top of this, organic farming creates soil that holds more carbon, making it easier for the soil to hold on to rainwater and they dont use chemicals that would end up in the groundwater."
   },
   {
     "question": "The lifespan of polyester is between 20 to 200 years",
@@ -365,7 +365,7 @@
     "explanation": "GOTS is a textile production certification that limits the use of toxic bleaches, dyes and other chemical inputs during the production process of textiles. And it states that all material was grown according to organic farming principles."
   },
   {
-    "question": "Is a bioplastic biodegradable",
+    "question": "All bioplastic is biodegradable.",
     "answer": "true",
     "explanation": "All materials biodegrade eventually, some after hours, days, some only after 500 years. Biodegradable means it will decompose, it does not mean it's remains will not pollute or that it is environmentally safe."
   },
@@ -425,7 +425,7 @@
     "explanation": "By designing the disassembly of a product into the product, the recycling process is inherently designed into the product."
   },
   {
-    "question": "Made to measure fashion is a thing of the past, it has not role in a sustainable future.",
+    "question": "Made to measure fashion is a thing of the past, it has no role in a sustainable future.",
     "answer": "false",
     "explanation": "Made to measure is one great way to answer to the problem of overproduction."
   },
@@ -437,7 +437,7 @@
   {
     "question": "Zero waste pattern cutting is a new way of making no waste when making clothing.",
     "answer": "false",
-    "explanation": "All garments where zero waste in the distant past. Fabric was so labour intensive, and expensive, that no tread went to waste. Cutting waste is something we only know since the industrial revolution. Making zero waste patterns is a great way to reduce pre-consumer waste."
+    "explanation": "All garments where zero waste in the distant past. Fabric was so labour intensive, and expensive, that no thread went to waste. Cutting waste is something we only know since the industrial revolution. Making zero waste patterns is a great way to reduce pre-consumer waste."
   },
   {
     "question": "Zero waste pattern cutting demands a very intense collaboration between the pattern maker and the designer.",
