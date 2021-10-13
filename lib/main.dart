@@ -292,12 +292,39 @@ class _UpdateTextState extends State {
       duration: const Duration(milliseconds: 500),
       curve: Curves.fastOutSlowIn,
       width: (tokenPhase == 1) ? 0.111 * sd.frameHeight(context) : 0,
+      height: (tokenPhase == 1) ? 0.111 * sd.frameHeight(context) : 0,
       bottom: (tokenPhase == 2) ? 45 : 90,
       right: (tokenPhase == 2) ? 45 : 20,
-      child: Image.asset(
-        "images/tokens/example-token-" + (sd.nrGoodAnswers + 1).toString() + ".png",
-        fit: BoxFit.fitHeight,
-      ),
+      child: Stack (
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: sd.offWhite,
+              border: Border.all(
+                color: sd.offWhite,
+              ),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(5),
+            child: Image.asset(
+              "images/tokens/token-" + (sd.nrGoodAnswers + 1).toString() + ".png",
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+        ],
+      )
     );
   }
 
@@ -329,7 +356,7 @@ class _UpdateTextState extends State {
                 barrierDismissible: false,
                 title: "Earth is saved!",
                 msg: "You did it, you saved earth! Your sustainable choices have" +
-                    "prevented the earth from being destroyed. Thanks for that!" +
+                    " prevented the earth from being destroyed. Thanks for that!" +
                     "\n\nYou can of course always play again to learn even more.",
 
                 actions: [
@@ -564,7 +591,7 @@ Container tokenContainer(int i) {
     width:  40,
     decoration: new BoxDecoration(
       image: new DecorationImage(
-          image: new AssetImage("assets/images/tokens/example-token-" + i.toString() + ".png"),
+          image: new AssetImage("assets/images/tokens/token-" + i.toString() + ".png"),
           fit: BoxFit.scaleDown
       ),
     ),
@@ -583,7 +610,7 @@ Container tokenTargetContainer(bool invisible) {
       width:  40,
       decoration: new BoxDecoration(
         image: new DecorationImage(
-            image: new AssetImage("assets/images/tokens/example-token-target.png"),
+            image: new AssetImage("assets/images/tokens/token-target.png"),
             fit: BoxFit.scaleDown
         ),
       ),
