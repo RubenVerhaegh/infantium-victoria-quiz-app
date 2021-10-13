@@ -293,18 +293,18 @@ class _UpdateTextState extends State {
       curve: Curves.fastOutSlowIn,
       width: (tokenPhase == 1) ? 0.111 * sd.frameHeight(context) : 0,
       height: (tokenPhase == 1) ? 0.111 * sd.frameHeight(context) : 0,
-      bottom: (tokenPhase == 2) ? 45 : 90,
-      right: (tokenPhase == 2) ? 45 : 20,
+      bottom: (tokenPhase == 1) ? 90 : 45,
+      right: (tokenPhase == 1) ? 20 : 45,
       child: Stack (
         children: [
           Container(
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: sd.offWhite,
-              border: Border.all(
+              color: (tokenPhase > 0) ? sd.offWhite : Color.fromRGBO(0, 0, 0, 0),
+              border: (tokenPhase > 0) ? Border.all(
                 color: sd.offWhite,
-              ),
+              ) : null,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -342,7 +342,7 @@ class _UpdateTextState extends State {
       setState(() {
         tokenPhase = 1;
       });
-      Future.delayed(const Duration(milliseconds: 1200), () {
+      Future.delayed(const Duration(milliseconds: 1500), () {
         setState(() {
           tokenPhase = 2;
         });
@@ -610,7 +610,7 @@ Container tokenTargetContainer(bool invisible) {
       width:  40,
       decoration: new BoxDecoration(
         image: new DecorationImage(
-            image: new AssetImage("assets/images/tokens/token-target.png"),
+            image: new AssetImage("assets/images/tokens/example-token-target.png"),
             fit: BoxFit.scaleDown
         ),
       ),
