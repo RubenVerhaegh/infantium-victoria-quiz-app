@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Title',
+      title: "Let's save the earth! - Infantium Victoria",
       home: MainLayout(),
     );
   }
@@ -71,6 +71,7 @@ class _UpdateTextState extends State {
 
   _setup() async {
     Question question = await sd.randomQuestion();
+    print(sd.frameHeight(context));
     setState(() {
       _currentQuestion = question;
       _videoController = VideoPlayerController.asset(
@@ -124,6 +125,7 @@ class _UpdateTextState extends State {
                 // );
                 Dialogs.materialDialog(
                     context: context,
+                    barrierDismissible: false,
                     msg: "Come back here later to visit the sustainable t-shirt workplace!",
                     actions: [
                       IconsButton(
@@ -186,12 +188,12 @@ class _UpdateTextState extends State {
                 padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: showingQuestion ? Text(
                     _currentQuestion.question,
-                    style: TextStyle(fontSize: 20.0)
+                    style: TextStyle(fontSize: sd.fontSize(context))
                 ) : Text(
-                    (correctlyAnswered ? "That is indeed " : "That is actually ") +
+                    (correctlyAnswered ? "That is indeed " : "Actually, that is ") +
                         _currentQuestion.correctAnswer.toString() + ". " +
                         _currentQuestion.explanation + "\n",
-                    style: TextStyle(fontSize: 20.0)
+                    style: TextStyle(fontSize: sd.fontSize(context))
                 ),
               )
             ),
@@ -208,8 +210,8 @@ class _UpdateTextState extends State {
               children: [
                 if (showingQuestion) Container(
                   margin: EdgeInsets.fromLTRB(10,0,10,0),
-                  child: ElevatedButton(
-                    child: Text('True', style: TextStyle(fontSize: 20.0),),
+                  child: new ElevatedButton(
+                    child: Text('True', style: TextStyle(fontSize: sd.fontSize(context)),),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.green),
                     ),
@@ -220,8 +222,8 @@ class _UpdateTextState extends State {
                 ),
                 if (showingQuestion) Container(
                   margin: EdgeInsets.fromLTRB(10,0,10,0),
-                  child: ElevatedButton(
-                    child: Text('False', style: TextStyle(fontSize: 20.0),),
+                  child: new ElevatedButton(
+                    child: Text('False', style: TextStyle(fontSize: sd.fontSize(context)),),
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.red)
                     ),
@@ -236,16 +238,16 @@ class _UpdateTextState extends State {
                     child: Text(
                       'Continue',
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: sd.fontSize(context),
                         color: !showingAnimation && tokenPhase == 0
                             ? Colors.white
-                            : Color.fromRGBO(200, 200, 200, 1)
+                            : Color.fromRGBO(180, 180, 180, 1)
                       ),
                     ),
                     style: ButtonStyle(
                         backgroundColor: !showingAnimation && tokenPhase == 0
                             ? MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
-                            : MaterialStateProperty.all(Color.fromRGBO(80, 80, 80, 1))
+                            : MaterialStateProperty.all(Color.fromRGBO(100, 100, 100, 1))
                     ),
                     onPressed: () {
                       if (!showingAnimation && tokenPhase == 0) continueAfterAnswer();
@@ -366,6 +368,7 @@ class _UpdateTextState extends State {
         if (sd.nrWrongAnswers == 1) {
           Dialogs.materialDialog(
               context: context,
+              barrierDismissible: false,
               title: "Actions have consequences",
               msg: "As you can see, our decisions impact the world directly. "
                   "Make too many wrong decisions and the earth will be destroyed.",
@@ -404,10 +407,10 @@ class _UpdateTextState extends State {
     } else {
       Dialogs.materialDialog(
           context: context,
+          barrierDismissible: false,
           title: "Well, there goes planet earth...",
           msg: "It sure was fun while it lasted, but the earth is no more. " +
               "Your choices have ultimately destroyed our planet and everything on it.",
-          barrierDismissible: false,
           actions: [
             IconsButton(
               text: "Try again",

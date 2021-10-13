@@ -20,6 +20,8 @@ class SharedData {
   double frameWidth(BuildContext context) => frameHeight(context) * 9.0 / 16.0;
   double frameHeight(BuildContext context) => deviceHeight(context);
 
+  double fontSize(BuildContext context) => 0.03 * frameHeight(context);
+
   Color _offWhite = Color.fromRGBO(249, 243, 222, 1);
 
   factory SharedData() {
