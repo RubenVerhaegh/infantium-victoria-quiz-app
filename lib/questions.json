@@ -235,9 +235,9 @@
     "explanation": "The average person does buy 60% more than they did 15 years ago, but only keeps the items HALF as long as 15 years ago."
   },
   {
-    "question": "Fewer than 1 % of garments are recycled into new clothing each year, and only 20 % of textiles are recycled at all.",
+    "question": "Fewer than 1% of garments are recycled into new clothing each year, and only 20% of textiles are recycled at all.",
     "answer": "true",
-    "explanation": "Recycling without down-cycling is a complex process. Most textile that is recycled will be reused as something else then garments. (it is easier to make rags, paper, coffee filters, car filling then new garments.) most textile that is recycled in new textile is either converted in a polyester or bio based synthetic, or blended with virgin new material.  Every tonne of discarded textiles that is reused stops 20 tonnes of CO2 from entering the atmosphere. "
+    "explanation": "Recycling without down-cycling is a complex process. Most textile that is recycled will be reused as something else then garments. (it is easier to make rags, paper, coffee filters, car filling then new garments.) most textile that is recycled in new textile is either converted in a polyester or bio based synthetic, or blended with virgin new material.  Every tonne of discarded textiles that is reused stops 20 tonnes of CO2 from entering the atmosphere."
   },
   {
     "question": "The fast fashion industry created 52 micro seasons per year.",
@@ -285,7 +285,7 @@
     "explanation": "Almost all clothing is made from either GMO or non organic intensively farmed plants, trees that are transformed in fiber via an intense chemical process or fossil fuels. Many chemicals used are known to irreversibly damage our ecosystem."
   },
   {
-    "question": "Natural fabrics as linen and cotton are always organic.",
+    "question": "Natural fabrics such as linen and cotton are always organic.",
     "answer": "false",
     "explanation": "Chemicals are invisible to human eye and still not listed on the label. Only certified organic garments are free of hazardous chemicals. If they label says organic material, but not organic garment, it might be treated with toxins in the making process.  Keep your guard up when the clothes in your hand promise to be wrinkle-free or stain-resistant as the only way would be to ‘’plastify’’ it. These treatments are done with toxic chemicals such as formaldehyde and PFOA, which are toxic for the environment and for your health."
   },
@@ -470,7 +470,7 @@
     "explanation": "Regenerative farming uses the ideas of organic farming, but it also aims to not only keep the status quo, but to actively improve the quality of the soil, and the lives of the people living around and of the soil."
   },
   {
-    "question": "1% or all cotton is organic cotton.",
+    "question": "1% of all cotton is organic cotton.",
     "answer": "true",
     "explanation": "1% is grown organically, a total of about 31% tries one way or another to improve its impact, but a staggering 69% is unhindered polluting waterways, soil and using volumes of chemicals."
   }
