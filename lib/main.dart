@@ -52,6 +52,8 @@ class _UpdateTextState extends State {
   bool showingAnimation = false;
   bool correctlyAnswered;
   int tokenPhase = 0;
+  bool contentUnlocked = false;
+  bool loginRetry = false;
 
   VideoPlayerController _videoController;
   Future<void> _initializedVideoPlayerFuture;
@@ -82,12 +84,107 @@ class _UpdateTextState extends State {
 
   @override
   Widget build(BuildContext context) {
+    if (sd.firstTime && contentUnlocked) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Dialogs.materialDialog(
+            context: context,
+            barrierDismissible: false,
+            title: "Welcome to SEW WHAT?!",
+            msg: "A game where you can save the world with fashion.",
+            actions: [
+              IconsButton(
+                text: "Start!",
+                iconData: Icons.navigate_next,
+                color: Colors.blue,
+                textStyle: TextStyle(color: Colors.white),
+                iconColor: Colors.white,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ]
+        );
+        setState(() {
+          sd.firstTime = false;
+        });
+      });
+    }
     return Center(
       child: Container(
-          height: sd.frameHeight(context),
-          width: sd.frameWidth(context),
-          child: firstScreenContent()
+        height: sd.frameHeight(context),
+        width: sd.frameWidth(context),
+        child: contentUnlocked
+            ? firstScreenContent()
+            : loginScreen(),
       ),
+    );
+
+  }
+
+  Widget loginScreen() {
+    TextEditingController loginController = new TextEditingController();
+    return Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+                "Enter the password to continue:",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: sd.fontSize(context)
+                )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 0.6 * sd.frameWidth(context),
+                  child: TextField(
+                    controller: loginController,
+                    style: TextStyle(fontSize: sd.fontSize(context)),
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(100)
+                      ),
+                      hintText: loginRetry
+                          ? 'Try again'
+                          : 'Password',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: MaterialButton(
+                    child:  Icon(
+                      Icons.send,
+                      color: Colors.blue,
+                    ),
+                    height: 56,
+                    minWidth: 56,
+                    shape: CircleBorder(),
+                    color: Colors.white,
+                    elevation: 2.0,
+                    onPressed: () {
+                      var text = loginController.text;
+                      if (text == sd.password) {
+                        setState(() {
+                          contentUnlocked = true;
+                        });
+                      } else {
+                        setState(() {
+                          loginRetry = true;
+                        });
+                      }
+                    },
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
     );
   }
 
@@ -234,7 +331,7 @@ class _UpdateTextState extends State {
                       ),
                     ),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Color.fromRGBO(80, 80, 80, 1))
+                        backgroundColor: MaterialStateProperty.all(sd.enabledButtonColor),
                     ),
                     onPressed: () {
                       answerQuestion(false);

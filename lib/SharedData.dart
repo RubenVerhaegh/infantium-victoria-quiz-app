@@ -7,6 +7,7 @@ import 'package:myapp/Question.dart';
 
 class SharedData {
   static final SharedData instance = SharedData._internal();
+  String _password = "RFSAntwerp";
   List<Question> _questions;
   int _nrGoodAnswers  = 0;
   int _nrWrongAnswers = 0;
@@ -24,6 +25,7 @@ class SharedData {
 
   double fontSize(BuildContext context) => 0.03 * frameHeight(context);
 
+  bool firstTime = true;
   bool hasVisitedSecondScreen = false;
   bool completed = false;
 
@@ -105,4 +107,5 @@ class SharedData {
   Color get enabledTextColor => _enabledTextColor;
   Color get disabledButtonColor => _disabledButtonColor;
   Color get enabledButtonColor => _enabledButtonColor;
+  String get password => _password;
 }
