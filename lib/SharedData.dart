@@ -8,7 +8,7 @@ import 'package:myapp/Question.dart';
 class SharedData {
   static final SharedData instance = SharedData._internal();
   List<Question> _questions;
-  int _nrGoodAnswers  = 9;
+  int _nrGoodAnswers  = 0;
   int _nrWrongAnswers = 0;
   int _nrDisasters = 10;
   int _nrQuestionsAsked = 0;

@@ -556,6 +556,32 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
       );
       _initializedVideoPlayerFuture = _videoController.initialize();
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!sd.hasVisitedSecondScreen) {
+        Dialogs.materialDialog(
+          context: context,
+          barrierDismissible: false,
+          title: "Welcome to the workplace",
+          msg: "This workplace is for making T-shirts. Drag all your collected "
+              "parts to the correct location to start the production.",
+          actions: [
+            IconsButton(
+              text: "Continue",
+              iconData: Icons.navigate_next,
+              color: Colors.blue,
+              textStyle: TextStyle(color: Colors.white),
+              iconColor: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ]
+        );
+      }
+      setState(() {
+        sd.hasVisitedSecondScreen = true;
+      });
+    });
   }
 
   @override
