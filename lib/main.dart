@@ -562,8 +562,8 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
           context: context,
           barrierDismissible: false,
           title: "Welcome to the workplace",
-          msg: "This workplace is for making T-shirts. Drag all your collected "
-              "parts to the correct location to start the production.",
+          msg: "A T-shirt will be made in this workplace. Drag all your collected "
+              "parts to the correct location. Once everything is in the right place, the production will start.",
           actions: [
             IconsButton(
               text: "Continue",
@@ -848,7 +848,7 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
       width:  size,
       decoration: new BoxDecoration(
         image: new DecorationImage(
-            image: new AssetImage("assets/images/tokens/token-" + i.toString() + ".png"),
+            image: new AssetImage("images/tokens/token-" + i.toString() + ".png"),
             fit: BoxFit.scaleDown
         ),
       ),
