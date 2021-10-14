@@ -846,35 +846,72 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
   }
 
   Widget tokenDock() {
-    return Container(
-        width: 0.95 * sd.smallFrameWidth(context),
-        height: 0.26 * sd.frameHeight(context),
-        decoration: BoxDecoration(
-          color: Color.fromRGBO(0, 0, 0, 0.15),
-          border: Border.all(
-            color: Colors.black,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(0.05 * sd.smallFrameWidth(context)),
-            topRight: Radius.circular(0.05 * sd.smallFrameWidth(context)),
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              for (int row = 0; row < 2; row++)
-                Row (
+    return Stack(
+      children: [
+        Container(
+            width: 0.95 * sd.smallFrameWidth(context),
+            height: 0.26 * sd.frameHeight(context),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(0, 0, 0, 0.15),
+              border: Border.all(
+                color: Colors.black,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(0.05 * sd.smallFrameWidth(context)),
+                topRight: Radius.circular(0.05 * sd.smallFrameWidth(context)),
+              ),
+            ),
+            child: Center(
+              child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    for (int i = row * 5 + 1; i <= (row + 1) * 5; i++)
-                      dockedToken(i)
-                  ],
-                )
-            ]
-          ),
-        )
+                    for (int row = 0; row < 2; row++)
+                      Row (
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          for (int i = row * 5 + 1; i <= (row + 1) * 5; i++)
+                            dockedToken(i)
+                        ],
+                      )
+                  ]
+              ),
+            )
+        ),
+        DragTarget<int>(
+          builder: (
+              BuildContext context,
+              List<dynamic> accepted,
+              List<dynamic> rejected,
+              ) {
+            return Container(
+              width: 0.95 * sd.smallFrameWidth(context),
+              height: 0.26 * sd.frameHeight(context),
+            );
+          },
+          onAccept: (int data) {
+            print("dragged " + data.toString() + " to the dock");
+            setState(() {
+              for (int j = 0; j < placed.length; j++) {
+                if (placed[j] == data) {
+                  placed[j] = 0;
+                }
+              }
+            });
+            sd.tokenPlacement = placed;
+            print(placed);
+            if (listEquals(placed, [6, 5, 2, 10, 4, 1, 9, 7, 3, 8])) {
+              setState(() {
+                ready = true;
+              });
+            } else if (ready = true) {
+              setState(() {
+                ready = false;
+              });
+            }
+          },
+        ),
+      ],
     );
   }
 
