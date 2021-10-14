@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Let's save the earth! - Infantium Victoria",
+      title: "SEW WHAT?! - Infantium Victoria",
       home: MainLayout(),
     );
   }
@@ -126,23 +124,6 @@ class _UpdateTextState extends State {
                 ).then((value) {
                   if (sd.completed) restartGame();
                 });
-                // Dialogs.materialDialog(
-                //     context: context,
-                //     barrierDismissible: false,
-                //     msg: "Come back here later to visit the sustainable t-shirt workplace!",
-                //     actions: [
-                //       IconsButton(
-                //         text: "Continue",
-                //         iconData: Icons.navigate_next,
-                //         color: Colors.blue,
-                //         textStyle: TextStyle(color: Colors.white),
-                //         iconColor: Colors.white,
-                //         onPressed: () {
-                //           Navigator.of(context).pop();
-                //         },
-                //       )
-                //     ]
-                // );
               }
             },
           ),
@@ -154,6 +135,17 @@ class _UpdateTextState extends State {
   }
 
   Container questionCard() {
+    Color borderColor;
+    if (showingQuestion) {
+      borderColor = sd.offWhite;
+    } else {
+      borderColor = correctlyAnswered
+          ? Colors.green
+          : Colors.red;
+    }
+
+    bool continueButtonEnabled = !showingAnimation && tokenPhase == 0 && sd.nrGoodAnswers < 10;
+
     return Container(
       margin: EdgeInsets.only(top: 0.098 * sd.frameHeight(context)),
       height: 0.286 * sd.frameHeight(context),
@@ -161,7 +153,8 @@ class _UpdateTextState extends State {
       decoration: BoxDecoration(
         color: sd.offWhite,
         border: Border.all(
-          color: sd.offWhite,
+          color: borderColor,
+          width: 0.005 * sd.frameHeight(context),
         ),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
@@ -214,10 +207,16 @@ class _UpdateTextState extends State {
               children: [
                 if (showingQuestion) Container(
                   margin: EdgeInsets.fromLTRB(10,0,10,0),
-                  child: new ElevatedButton(
-                    child: Text('True', style: TextStyle(fontSize: sd.fontSize(context)),),
+                  child: new ElevatedButton.icon(
+                    icon: Icon(Icons.check, color: sd.enabledTextColor, size: sd.fontSize(context)),
+                    label: Text('True',
+                      style: TextStyle(
+                        fontSize: sd.fontSize(context),
+                        color: sd.enabledTextColor,
+                      ),
+                    ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green),
+                      backgroundColor: MaterialStateProperty.all(sd.enabledButtonColor),
                     ),
                     onPressed: () {
                       answerQuestion(true);
@@ -226,10 +225,16 @@ class _UpdateTextState extends State {
                 ),
                 if (showingQuestion) Container(
                   margin: EdgeInsets.fromLTRB(10,0,10,0),
-                  child: new ElevatedButton(
-                    child: Text('False', style: TextStyle(fontSize: sd.fontSize(context)),),
+                  child: new ElevatedButton.icon(
+                    icon: Icon(Icons.close, color: sd.enabledTextColor, size: sd.fontSize(context)),
+                    label: Text('False',
+                      style: TextStyle(
+                        fontSize: sd.fontSize(context),
+                        color: sd.enabledTextColor,
+                      ),
+                    ),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.red)
+                        backgroundColor: MaterialStateProperty.all(Color.fromRGBO(80, 80, 80, 1))
                     ),
                     onPressed: () {
                       answerQuestion(false);
@@ -238,23 +243,30 @@ class _UpdateTextState extends State {
                 ),
                 if(!showingQuestion) Container(
                   margin: EdgeInsets.all(0),
-                  child: ElevatedButton(
-                    child: Text(
+                  child: ElevatedButton.icon(
+                    icon: Icon(
+                        Icons.navigate_next,
+                        color: continueButtonEnabled
+                          ? sd.enabledTextColor
+                          : sd.disabledTextColor,
+                        size: sd.fontSize(context)
+                    ),
+                    label: Text(
                       'Continue',
                       style: TextStyle(
                         fontSize: sd.fontSize(context),
-                        color: !showingAnimation && tokenPhase == 0 && sd.nrGoodAnswers < 10
-                            ? Colors.white
-                            : Color.fromRGBO(180, 180, 180, 1)
+                        color: continueButtonEnabled
+                            ? sd.enabledTextColor
+                            : sd.disabledTextColor,
                       ),
                     ),
                     style: ButtonStyle(
-                        backgroundColor: !showingAnimation && tokenPhase == 0 && sd.nrGoodAnswers < 10
-                            ? MaterialStateProperty.all(Color.fromRGBO(50, 50, 50, 1))
-                            : MaterialStateProperty.all(Color.fromRGBO(100, 100, 100, 1))
+                        backgroundColor: continueButtonEnabled
+                            ? MaterialStateProperty.all(sd.enabledButtonColor)
+                            : MaterialStateProperty.all(sd.disabledButtonColor)
                     ),
                     onPressed: () {
-                      if (!showingAnimation && tokenPhase == 0 && sd.nrGoodAnswers < 10) continueAfterAnswer();
+                      if (continueButtonEnabled) continueAfterAnswer();
                     },
                   ),
                 ),

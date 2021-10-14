@@ -28,6 +28,10 @@ class SharedData {
   bool completed = false;
 
   Color _offWhite = Color.fromRGBO(249, 243, 222, 1);
+  Color _enabledButtonColor = Color.fromRGBO(80, 80, 80, 1);
+  Color _disabledButtonColor = Color.fromRGBO(110, 110, 110, 1);
+  Color _enabledTextColor = Color.fromRGBO(255, 255, 255, 1);
+  Color _disabledTextColor = Color.fromRGBO(180, 180, 180, 1);
 
   factory SharedData() {
     return instance;
@@ -95,5 +99,10 @@ class SharedData {
   get nrGoodAnswers => _nrGoodAnswers;
   get nrDisasters => _nrDisasters;
   get nrUnaskedQuestions => _nrQuestionsAsked;
+
   get offWhite => _offWhite;
+  Color get disabledTextColor => _disabledTextColor;
+  Color get enabledTextColor => _enabledTextColor;
+  Color get disabledButtonColor => _disabledButtonColor;
+  Color get enabledButtonColor => _enabledButtonColor;
 }
