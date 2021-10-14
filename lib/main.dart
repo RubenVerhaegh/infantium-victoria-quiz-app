@@ -653,6 +653,9 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
   double tokenTargetSize;
   List<double> placedTokenSizes;
 
+  bool ready = false;
+  bool imageCached = false;
+
   VideoPlayerController _videoController;
   Future<void> _initializedVideoPlayerFuture;
 
@@ -710,6 +713,14 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
       sd.frameHeight(context) * 127.0 / 1080.0,
       sd.frameHeight(context) * 87.0 / 1080.0,
     ];
+    if (sd.nrGoodAnswers == 10 && !imageCached) {
+      if (sd.nrGoodAnswers == 10) {
+        precacheImage(new AssetImage(
+            "images/screen2/green-button.png"),
+            context);
+        imageCached = true;
+      }
+    }
 
     return Stack(
       children: [
@@ -720,28 +731,97 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
             fit: BoxFit.fitHeight,
           ),
         ),
-        if (sd.completed) Align(
-          alignment: Alignment.topCenter,
-          child: FutureBuilder(
-            future: _initializedVideoPlayerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return AspectRatio(
-                  aspectRatio: _videoController.value.aspectRatio,
-                  child: VideoPlayer(_videoController),
-                );
-              } else {
-                return Center();
-              }
-            },
-          ),
-        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: tokenDock(),
         ),
-        if (!sd.completed) for (int i = 1; i <= 10; i++)
+        for (int i = 1; i <= 10; i++)
           completeTokenTarget(i),
+        Positioned(
+          top: sd.frameHeight(context) * 614.0 / 929.0,
+          left: sd.frameHeight(context) * 333.0 / 929.0,
+          width: sd.frameHeight(context) * 133.0 / 929.0,
+          height: sd.frameHeight(context) * 133.0 / 929.0,
+          child: IconButton(
+            icon: Image.asset("images/screen2/" +
+                (ready ? "green" : "red") + "-button.png"),
+            onPressed: () {
+              if (ready) {
+                setState(() {
+                  sd.completed = true;
+                  _videoController.play();
+                });
+                Future.delayed(const Duration(milliseconds: 41 * 1000), ()
+                {
+                  setState(() {
+                    Dialogs.materialDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        title: "And that is how it's done!",
+                        msg: "Not only have you saved earth, but more importantly, you "
+                            "have created the most sustainably produced T-shirt ever! " +
+                            "But there is of course always more to learn about " +
+                            "sustainability. Play the game again to see new questions and learn even more.",
+                        actions: [
+                          IconsButton(
+                            text: "Play again",
+                            iconData: Icons.refresh,
+                            color: Colors.blue,
+                            textStyle: TextStyle(color: Colors.white),
+                            iconColor: Colors.white,
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              Navigator.pop(context);
+                            },
+                          )
+                        ]
+                    );
+                  });
+                });
+              } else {
+                Dialogs.materialDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    title: "Place all items in the correct location",
+                    msg: "Once all items are in the right place, this button "
+                        "will turn green. Then, the production can begin.",
+                    actions: [
+                      IconsButton(
+                        text: "Continue",
+                        iconData: Icons.navigate_next,
+                        color: Colors.blue,
+                        textStyle: TextStyle(color: Colors.white),
+                        iconColor: Colors.white,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ]
+                );
+              }
+            },
+          ),
+        ),
+        AnimatedOpacity(
+          opacity: sd.completed ? 1.0 : 0.0,
+          duration: new Duration(milliseconds: 1000),
+          child: (sd.completed) ? Align(
+            alignment: Alignment.topCenter,
+            child: FutureBuilder(
+              future: _initializedVideoPlayerFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return AspectRatio(
+                    aspectRatio: _videoController.value.aspectRatio,
+                    child: VideoPlayer(_videoController),
+                  );
+                } else {
+                  return Center();
+                }
+              },
+            ),
+          ) : Container(),
+        ),
         if (sd.nrGoodAnswers < 10) Positioned(
           top: 10,
           left: 10,
@@ -904,35 +984,11 @@ class _StatefulSecondRouteState extends State<StatefulSecondRoute> {
         print(placed);
         if (listEquals(placed, [6, 5, 2, 10, 4, 1, 9, 7, 3, 8])) {
           setState(() {
-            sd.completed = true;
-            _videoController.play();
+            ready = true;
           });
-          Future.delayed(const Duration(milliseconds: 41 * 1000), ()
-          {
-            setState(() {
-              Dialogs.materialDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  title: "And that is how it's done!",
-                  msg: "Not only have you saved earth, but more importantly, you "
-                      "have created the most sustainably produced T-shirt ever! " +
-                      "But there is of course always more to learn about " +
-                      "sustainability. Play the game again to see new questions and learn even more.",
-                  actions: [
-                    IconsButton(
-                      text: "Play again",
-                      iconData: Icons.refresh,
-                      color: Colors.blue,
-                      textStyle: TextStyle(color: Colors.white),
-                      iconColor: Colors.white,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.pop(context);
-                      },
-                    )
-                  ]
-              );
-            });
+        } else if (ready = true) {
+          setState(() {
+            ready = false;
           });
         }
       },
