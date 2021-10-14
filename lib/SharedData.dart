@@ -8,19 +8,24 @@ import 'package:myapp/Question.dart';
 class SharedData {
   static final SharedData instance = SharedData._internal();
   List<Question> _questions;
-  int _nrGoodAnswers  = 0;
+  int _nrGoodAnswers  = 9;
   int _nrWrongAnswers = 0;
   int _nrDisasters = 10;
   int _nrQuestionsAsked = 0;
   List<int> animationDuration = [11, 10, 10, 11, 9, 11, 11, 7, 10, 10];
+  List tokenPlacement = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   double deviceHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double deviceWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
   double frameWidth(BuildContext context) => frameHeight(context) * 9.0 / 16.0;
   double frameHeight(BuildContext context) => deviceHeight(context);
+  double smallFrameWidth(BuildContext context) => frameHeight(context) * 540 / 1080;
 
   double fontSize(BuildContext context) => 0.03 * frameHeight(context);
+
+  bool hasVisitedSecondScreen = false;
+  bool completed = false;
 
   Color _offWhite = Color.fromRGBO(249, 243, 222, 1);
 
@@ -83,6 +88,7 @@ class SharedData {
   void restartGame() {
     _nrGoodAnswers = 0;
     _nrWrongAnswers = 0;
+    tokenPlacement = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
 
   get nrWrongAnswers => _nrWrongAnswers;

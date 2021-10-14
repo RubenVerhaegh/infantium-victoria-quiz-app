@@ -44,6 +44,7 @@ flutter:
     - assets/images/
     - assets/images/tokens/
     - assets/images/stills1/
+    - assets/images/screen2/
     - assets/animations/
     - lib/questions.json
     - lib/testquestions.json
