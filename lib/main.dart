@@ -281,7 +281,7 @@ class _UpdateTextState extends State {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: showingQuestion ? Text(
-                    _currentQuestion.question,
+                    _currentQuestion.question + "\n",
                     style: TextStyle(fontSize: sd.fontSize(context))
                 ) : Text(
                     (correctlyAnswered ? "That is indeed " : "This is actually ") +
