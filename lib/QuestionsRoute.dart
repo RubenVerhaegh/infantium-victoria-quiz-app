@@ -7,7 +7,9 @@ import 'package:video_player/video_player.dart';
 import 'Question.dart';
 import 'WorkplaceRoute.dart';
 
-class MainLayout extends StatelessWidget {
+// This class contains all content for the first screen with the earth and
+// question cards
+class QuestionsRouteParent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +17,7 @@ class MainLayout extends StatelessWidget {
       body: new Stack(
         children: <Widget>[
           new Center(
-            child: UpdateText(),
+            child: QuestionsRouteWidget(),
           )
         ],
       ),
@@ -23,19 +25,20 @@ class MainLayout extends StatelessWidget {
   }
 }
 
-class UpdateText extends StatefulWidget {
+class QuestionsRouteWidget extends StatefulWidget {
   @override
-  _UpdateTextState createState() => _UpdateTextState();
+  _QuestionsRouteWidgetState createState() => _QuestionsRouteWidgetState();
 }
 
-class _UpdateTextState extends State {
+// The actual dynamic content of the first screen
+class _QuestionsRouteWidgetState extends State {
   SharedData sd = SharedData.instance;
   Question _currentQuestion = new Question("", true, "");
   bool showingQuestion = true;
   bool showingAnimation = false;
   bool correctlyAnswered;
-  int tokenPhase = 0;
-  bool contentUnlocked = true;
+  int tokenPhase = 0; // Variable to control animation of token collection
+  bool contentUnlocked = true; // Whether the content of the app is unlocked
   bool loginRetry = false;
 
   VideoPlayerController _videoController;
@@ -55,7 +58,6 @@ class _UpdateTextState extends State {
 
   _setup() async {
     Question question = await sd.randomQuestion();
-    print(sd.frameHeight(context));
     setState(() {
       _currentQuestion = question;
       _videoController = VideoPlayerController.asset(
@@ -65,8 +67,10 @@ class _UpdateTextState extends State {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
+    // Show dialog upon first time opening
     if (sd.firstTime && contentUnlocked) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Dialogs.materialDialog(
@@ -92,6 +96,8 @@ class _UpdateTextState extends State {
         });
       });
     }
+
+    // Show either login screen (if enabled) or the actual content of the app
     return Center(
       child: Container(
         height: sd.frameHeight(context),
@@ -104,6 +110,8 @@ class _UpdateTextState extends State {
 
   }
 
+  // Currently unused. This was previously used to block access to the content
+  // until a password was added.
   Widget loginScreen() {
     TextEditingController loginController = new TextEditingController();
     return Container(
@@ -122,7 +130,7 @@ class _UpdateTextState extends State {
             children: [
               Container(
                 width: 0.6 * sd.frameWidth(context),
-                child: TextField(
+                child: TextField( // Password field
                   controller: loginController,
                   style: TextStyle(fontSize: sd.fontSize(context)),
                   obscureText: true,
@@ -140,7 +148,7 @@ class _UpdateTextState extends State {
               ),
               Padding(
                 padding: EdgeInsets.all(10.0),
-                child: MaterialButton(
+                child: MaterialButton( // Enter password button
                   child:  Icon(
                     Icons.send,
                     color: Colors.blue,
@@ -171,17 +179,25 @@ class _UpdateTextState extends State {
     );
   }
 
+  // Layout of the first screen
   Stack firstScreenContent() {
     return Stack(children: <Widget> [
+      // Earth
       Align(
         alignment: Alignment.topCenter,
         child: earth(),
       ),
+
+      // Question card
       Align(
         alignment: Alignment.topCenter,
         child: questionCard(),
       ),
+
+      // Animation for when a new token is collected
       tokenAnimation(),
+
+      // Button to go to workplace screen
       Positioned(
         bottom: 20,
         right: 20,
@@ -200,7 +216,7 @@ class _UpdateTextState extends State {
               if (!showingAnimation && tokenPhase == 0) {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SecondRoute())
+                    MaterialPageRoute(builder: (context) => WorkplaceRouteParent())
                 ).then((value) {
                   if (sd.completed) restartGame();
                 });
@@ -215,6 +231,8 @@ class _UpdateTextState extends State {
   }
 
   Container questionCard() {
+    // The color of the border of the question card changes when a question is
+    // answered correctly or wrongly.
     Color borderColor;
     if (showingQuestion) {
       borderColor = sd.offWhite;
@@ -224,9 +242,10 @@ class _UpdateTextState extends State {
           : Colors.red;
     }
 
+    // Whether the 'continue' button can be pressed
     bool continueButtonEnabled = !showingAnimation && tokenPhase == 0 && sd.nrGoodAnswers < 10;
 
-    return Container(
+    return Container( // Card shape
         margin: EdgeInsets.only(top: 0.098 * sd.frameHeight(context)),
         height: 0.286 * sd.frameHeight(context),
         width: 0.826 * sd.frameWidth(context),
@@ -248,7 +267,7 @@ class _UpdateTextState extends State {
         ),
         child:
         Stack(children: <Widget>[
-          Padding(
+          Padding( // Darker "screen" on card containing the questions
             padding: const EdgeInsets.all(5.0),
             child: Container(
               height: 0.221 * sd.frameHeight(context),
@@ -260,7 +279,7 @@ class _UpdateTextState extends State {
                   ),
                   borderRadius: BorderRadius.circular(7.5)
               ),
-              child: Scrollbar(
+              child: Scrollbar( // Scrollable question/answer text
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                     child: showingQuestion ? Text(
@@ -278,13 +297,14 @@ class _UpdateTextState extends State {
           ),
 
           Column(children: <Widget>[
-            Spacer(),
+            Spacer(), // Vertical space between question screen and button(s)
             Padding(
               padding: EdgeInsets.all(0.007 * sd.frameHeight(context)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // "True" button
                   if (showingQuestion) Container(
                     margin: EdgeInsets.fromLTRB(10,0,10,0),
                     child: new ElevatedButton.icon(
@@ -303,6 +323,8 @@ class _UpdateTextState extends State {
                       },
                     ),
                   ),
+
+                  // "False" button
                   if (showingQuestion) Container(
                     margin: EdgeInsets.fromLTRB(10,0,10,0),
                     child: new ElevatedButton.icon(
@@ -321,6 +343,8 @@ class _UpdateTextState extends State {
                       },
                     ),
                   ),
+
+                  // "Continue" button
                   if(!showingQuestion) Container(
                     margin: EdgeInsets.all(0),
                     child: ElevatedButton.icon(
@@ -358,13 +382,17 @@ class _UpdateTextState extends State {
     );
   }
 
+  // The images and animations of earth
   Stack earth() {
     return Stack(
       children: [
+        // Image
         if (sd.nrWrongAnswers < sd.nrDisasters) Image.asset(
           "images/stills1/" + (sd.nrWrongAnswers).toString() + ".png",
           fit: BoxFit.fitHeight,
         ),
+
+        // Video
         if (showingAnimation)
           FutureBuilder(
             future: _initializedVideoPlayerFuture,
@@ -383,6 +411,11 @@ class _UpdateTextState extends State {
     );
   }
 
+  // Animated widget that is shown when the user receives a new token after
+  // answering a question correctly. Tokens are the objects that can be dragged
+  // in the second screen with the workplace.
+  // The different stages of the animation are controlled via the `tokenPhase'
+  // variable.
   AnimatedPositioned tokenAnimation() {
     return AnimatedPositioned(
         duration: const Duration(milliseconds: 500),
@@ -393,6 +426,7 @@ class _UpdateTextState extends State {
         right: (tokenPhase == 1) ? 20 : 45,
         child: Stack (
           children: [
+            // Background shape for token
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -412,6 +446,8 @@ class _UpdateTextState extends State {
                 ],
               ),
             ),
+
+            // Image of the newly collected token
             Container(
               padding: EdgeInsets.all(5),
               child: Image.asset(
@@ -424,6 +460,7 @@ class _UpdateTextState extends State {
     );
   }
 
+  // Load and show the next question
   void nextQuestion() async {
     var newQuestion = await sd.randomQuestion();
     setState(() {
@@ -433,8 +470,10 @@ class _UpdateTextState extends State {
     });
   }
 
+  // Collected logic for continuing after the user gives an answer
   void continueAfterAnswer() async {
     if (correctlyAnswered) {
+      // Play the token animation when a question is answered correctly
       setState(() {
         tokenPhase = 1;
       });
@@ -446,7 +485,9 @@ class _UpdateTextState extends State {
         Future.delayed(const Duration(milliseconds: 1000), () {
           sd.goodAnswer();
           tokenPhase = 0;
-          if (sd.nrGoodAnswers == sd.nrDisasters) {
+
+          // When all tokens have been collected:
+          if (sd.nrGoodAnswers == sd.nrTokens) {
             Dialogs.materialDialog(
                 context: context,
                 barrierDismissible: false,
@@ -455,7 +496,6 @@ class _UpdateTextState extends State {
                     "being destroyed. Thanks for that! Along the way, you have "
                     "collected all parts you need to make a T-shirt. It's time "
                     "to put those parts to good use!",
-
                 actions: [
                   IconsButton(
                     text: "Continue to the workplace",
@@ -467,7 +507,7 @@ class _UpdateTextState extends State {
                       Navigator.of(context).pop();
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SecondRoute())
+                          MaterialPageRoute(builder: (context) => WorkplaceRouteParent())
                       ).then((value) {
                         if (sd.completed) restartGame();
                       });
@@ -476,11 +516,14 @@ class _UpdateTextState extends State {
                 ]
             );
           } else {
+            // When not all tokens are collected yet, simply continue with the
+            // next question
             nextQuestion();
           }
         });
       });
     } else {
+      // If the question is answered incorrectly, play the next animation
       setState(() {
         showingAnimation = true;
         _videoController.play();
@@ -488,12 +531,15 @@ class _UpdateTextState extends State {
         _videoController.play();
       });
 
+      // Load the image of the next stage of the earth for when the animation
+      // will end
       precacheImage(new AssetImage(
           "images/stills1/" + (sd.nrWrongAnswers+1).toString() + ".png"),
           context);
       int delayTime = 1000 * (sd.animationDuration[sd.nrWrongAnswers] + 1);
       Future.delayed(Duration(milliseconds: delayTime), () {
         sd.wrongAnswer();
+        // Display dialog if this was the first incorrect answer
         if (sd.nrWrongAnswers == 1) {
           Dialogs.materialDialog(
               context: context,
@@ -516,6 +562,7 @@ class _UpdateTextState extends State {
               ]
           );
         } else {
+          // Otherwise, continue without showing the dialog
           setState(() {
             continueAfterWrongAnswer();
           });
@@ -525,7 +572,10 @@ class _UpdateTextState extends State {
     }
   }
 
+  // Logic for when the animation stops playing after a wrong answer
   void continueAfterWrongAnswer() {
+    // If the earth is not destroyed, load the next video in the background
+    // and continue to the next question.
     if (sd.nrWrongAnswers < sd.nrDisasters) {
       _videoController = new VideoPlayerController.asset(
         "animations/screen1/" + (sd.nrWrongAnswers + 1).toString() + ".mp4",
@@ -534,6 +584,7 @@ class _UpdateTextState extends State {
       _videoController.setLooping(false);
       nextQuestion();
     } else {
+      // If the earth is destroyed, show a dialog
       Dialogs.materialDialog(
           context: context,
           barrierDismissible: false,
@@ -557,13 +608,16 @@ class _UpdateTextState extends State {
     }
   }
 
+  // Resets the game to its initial state
   restartGame() {
     sd.completed = false;
     sd.restartGame();
     continueAfterWrongAnswer();
   }
 
+  // Handle the "true"/"false" button press
   void answerQuestion(bool givenAnswer) {
+    // Determine whether the question was answered correctly
     bool correct = (givenAnswer == _currentQuestion.correctAnswer);
 
     setState(() {
@@ -572,6 +626,8 @@ class _UpdateTextState extends State {
     });
   }
 
+  // This red "notification dot" keeps count of how many tokens have been
+  // collected
   Container notificationDot(int count) {
     return Container(
       width: 20,
