@@ -14,6 +14,8 @@ class SharedData {
   // Password, in case the content of the app should be blocked by a password.
   // Probably no longer necessary when releasing as app, but nice to keep in
   // case of another limited access web release.
+  // Given the specific use case scenario of the password, password security
+  // was not relevant and a hard coded password like was sufficient.
   String _password = "RFSAntwerp";
 
   List<Question> _questions;

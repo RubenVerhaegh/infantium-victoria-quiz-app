@@ -186,20 +186,52 @@ class _WorkplaceRouteWidgetState extends State<WorkplaceRouteWidget> {
                         context: context,
                         barrierDismissible: false,
                         title: "And that is how it's done!",
-                        msg: "Not only have you saved earth, but more importantly, you "
-                            "have created the most sustainably produced T-shirt ever! " +
-                            "But there is of course always more to learn about " +
-                            "sustainability. Play the game again to see new questions and learn even more.",
+                        msg: "Not only have you saved earth, but more "
+                            "importantly, you have created the most sustainably "
+                            "produced T-shirt ever! But there is of course "
+                            "always more to learn about sustainability. Play "
+                            "the game again to see new questions and learn "
+                            "even more.",
                         actions: [
                           IconsButton(
-                            text: "Play again",
-                            iconData: Icons.refresh,
+                            text: "Continue",
+                            iconData: Icons.navigate_next,
                             color: Colors.blue,
                             textStyle: TextStyle(color: Colors.white),
                             iconColor: Colors.white,
                             onPressed: () {
                               Navigator.of(context).pop();
-                              Navigator.pop(context);
+                              setState(() {
+                                Dialogs.materialDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    msg: "Team Infantium Victoria thanks our "
+                                        "sponsors for helping out on this "
+                                        "project:"
+                                        "\n- Christopher Rehm"
+                                        "\n- Sandra"
+                                        "\n- Blandine Maunoury"
+                                        "\n- Jonathan Yoni Ohayon"
+                                        "\n- Niki De Schryver"
+                                        "\n- Andrew"
+                                        "\n- Rami Riad"
+                                        "\n- Roman Bykov"
+                                        "\n\nDeveloped by: Ruben Verhaegh",
+                                    actions: [
+                                      IconsButton(
+                                        text: "Play again",
+                                        iconData: Icons.refresh,
+                                        color: Colors.blue,
+                                        textStyle: TextStyle(color: Colors.white),
+                                        iconColor: Colors.white,
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          Navigator.pop(context);
+                                        },
+                                      )
+                                    ]
+                                );
+                              });
                             },
                           )
                         ]
