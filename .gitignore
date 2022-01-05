@@ -47,7 +47,6 @@ app.*.map.json
 
 # Not necessary for now
 android/
-assets/
 ios
 web/
 test/
