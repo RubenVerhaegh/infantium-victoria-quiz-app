@@ -216,7 +216,8 @@ class _WorkplaceRouteWidgetState extends State<WorkplaceRouteWidget> {
                                         "\n- Andrew"
                                         "\n- Rami Riad"
                                         "\n- Roman Bykov"
-                                        "\n\nDeveloped by: Ruben Verhaegh",
+                                        "\n\nDeveloped by: Ruben Verhaegh"
+                                        "\nAnimations by: Muhammad Ahsan Siddiqui",
                                     actions: [
                                       IconsButton(
                                         text: "Play again",
